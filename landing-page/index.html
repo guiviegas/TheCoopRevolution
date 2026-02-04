@@ -283,12 +283,15 @@
             line-height: 1.3;
         }
         .card h3 .brand {
-            color: rgba(255,255,255,0.45);
-            font-weight: 400;
-            font-size: 0.8rem;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 0.15rem;
             display: block;
         }
-        .card h3 .name { color: var(--white); font-weight: 700; }
+        .card h3 .name { color: var(--white); font-weight: 700; font-size: 1.2rem; }
         .card .type {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.65rem;
@@ -670,21 +673,21 @@
                 <div class="card" data-coop="bank"><h3><span class="brand">THE COOP</span><span class="name">Bank</span></h3><span class="type">Financial</span><p>Digital cooperative bank. No branches, no bureaucracy. Results go to members.</p></div>
                 <div class="card" data-coop="cafe"><h3><span class="brand">THE COOP</span><span class="name">Cafe</span></h3><span class="type">Physical</span><p>End-to-end cooperative coffee shop. Cooperative suppliers, member pricing, shared results.</p></div>
                 <div class="card" data-coop="edu"><h3><span class="brand">THE COOP</span><span class="name">Edu</span></h3><span class="type">Education</span><p>Modern, digital cooperative education. Online courses, apps, gamification. Global content.</p></div>
-                <div class="card" data-coop="futures"><h3><span class="brand">THE COOP</span><span class="name">Futures</span></h3><span class="type">Research</span><p>Think-tank on new organizational models. Research on cooperativism, DAOs, and the future of work.</p></div>
+                <div class="card" data-coop="lab"><h3><span class="brand">THE COOP</span><span class="name">Lab</span></h3><span class="type">Research</span><p>Think-tank on new organizational models. Research on cooperativism, DAOs, and the future of work.</p></div>
             </div>
             <div class="cards" data-lang="es">
                 <div class="card" data-coop="protocol"><h3><span class="brand">THE COOP</span><span class="name">Protocol</span></h3><span class="type">Infraestructura</span><p>Infraestructura para cooperativas digitales y distribuidas. Herramientas, plantillas y tecnología para gobernanza moderna.</p></div>
                 <div class="card" data-coop="bank"><h3><span class="brand">THE COOP</span><span class="name">Bank</span></h3><span class="type">Financiero</span><p>Banco digital cooperativo. Sin sucursales, sin burocracia. Los resultados van a los miembros.</p></div>
                 <div class="card" data-coop="cafe"><h3><span class="brand">THE COOP</span><span class="name">Cafe</span></h3><span class="type">Físico</span><p>Café cooperativo de principio a fin. Proveedores cooperativos, precios para miembros, resultados compartidos.</p></div>
                 <div class="card" data-coop="edu"><h3><span class="brand">THE COOP</span><span class="name">Edu</span></h3><span class="type">Educación</span><p>Educación cooperativa moderna y digital. Cursos online, apps, gamificación. Contenido global.</p></div>
-                <div class="card" data-coop="futures"><h3><span class="brand">THE COOP</span><span class="name">Futures</span></h3><span class="type">Investigación</span><p>Think-tank sobre nuevos modelos de organización. Investigación sobre cooperativismo, DAOs y futuro del trabajo.</p></div>
+                <div class="card" data-coop="lab"><h3><span class="brand">THE COOP</span><span class="name">Lab</span></h3><span class="type">Investigación</span><p>Think-tank sobre nuevos modelos de organización. Investigación sobre cooperativismo, DAOs y futuro del trabajo.</p></div>
             </div>
             <div class="cards" data-lang="pt">
                 <div class="card" data-coop="protocol"><h3><span class="brand">THE COOP</span><span class="name">Protocol</span></h3><span class="type">Infraestrutura</span><p>Infraestrutura para cooperativas digitais e distribuídas. Ferramentas, templates e tecnologia para governança moderna.</p></div>
                 <div class="card" data-coop="bank"><h3><span class="brand">THE COOP</span><span class="name">Bank</span></h3><span class="type">Financeiro</span><p>Banco digital cooperativo. Sem agências, sem burocracia. Os resultados vão para os membros.</p></div>
                 <div class="card" data-coop="cafe"><h3><span class="brand">THE COOP</span><span class="name">Cafe</span></h3><span class="type">Físico</span><p>Café cooperativo de ponta a ponta. Fornecedores cooperativos, preços para membros, resultados compartilhados.</p></div>
                 <div class="card" data-coop="edu"><h3><span class="brand">THE COOP</span><span class="name">Edu</span></h3><span class="type">Educação</span><p>Educação cooperativa moderna e digital. Cursos online, apps, gamificação. Conteúdo global.</p></div>
-                <div class="card" data-coop="futures"><h3><span class="brand">THE COOP</span><span class="name">Futures</span></h3><span class="type">Pesquisa</span><p>Think-tank sobre novos modelos de organização. Pesquisa sobre cooperativismo, DAOs e futuro do trabalho.</p></div>
+                <div class="card" data-coop="lab"><h3><span class="brand">THE COOP</span><span class="name">Lab</span></h3><span class="type">Pesquisa</span><p>Think-tank sobre novos modelos de organização. Pesquisa sobre cooperativismo, DAOs e futuro do trabalho.</p></div>
             </div>
         </div>
     </section>
@@ -991,8 +994,8 @@
                      <p>O que ninguém mais está fazendo. Nós vamos fazer.</p>`
             }
         },
-        futures: {
-            name: 'Futures',
+        lab: {
+            name: 'Lab',
             type: { en: 'Research', es: 'Investigación', pt: 'Pesquisa' },
             content: {
                 en: `<p>Think-tank on new organizational models. Research on cooperativism, DAOs, distributed structures, and the future of work. Deep, rigorous, cutting-edge.</p>
