@@ -1,0 +1,312 @@
+THE COOP REVOLUTION - PITCH DECK
+==================================
+
+Distributed. Cooperative. Digital. By design, from day one.
+
+
+================================================================================
+SLIDE 1: COVER
+================================================================================
+
+THE COOP REVOLUTION
+Distributed. Cooperative. Digital. By design, from day one.
+
+
+================================================================================
+SLIDE 2: OPENING
+================================================================================
+
+The future of work, business, and the economy is distributed, shared, and collaborative.
+
+But it only works if it's built that way from the root.
+
+Not as a slogan. Not as a marketing strategy. Not as a perk.
+
+As structure. As foundation. As DNA.
+
+From day one.
+
+
+================================================================================
+SLIDE 3: THE SHIFT
+================================================================================
+
+We live in a world where most people work to build someone else's dream. Where "collaboration" is a buzzword in companies that have owners and employees. Where the value you create flows upward, not back to you.
+
+We believe there's another way.
+
+THE OLD MODEL                    THE COOP REVOLUTION
+-----------------------------------------------------------------
+You work, others profit          Those who work, build, and use are owners
+Collaboration as marketing       Collaboration as structure
+Centralized, with owners         Distributed, with members
+Closed, proprietary              Open source, shared
+Local by default                 Global and digital from the start
+
+This isn't idealism. It's a different architecture.
+
+
+================================================================================
+SLIDE 4: WHAT IT IS
+================================================================================
+
+THE COOP REVOLUTION is a movement to change how we work, build, and live.
+
+We're not here to disrupt industries. We're here to redesign the underlying structure of how people create value together.
+
+Cooperatives and DAOs are our tools. Not the goal—the means.
+
+Open source. Digital-first. Born global.
+
+A network of cooperatives, connected by shared infrastructure, shared values, and a shared brand.
+
+
+================================================================================
+SLIDE 5: THE UPGRADE
+================================================================================
+
+Cooperatives have worked for 180 years. Democratic governance. One member, one vote. Shared ownership. Proven model.
+
+But they got left behind. Paper-based. Local. Bureaucratic. Slow.
+
+DAOs brought programmable governance. Smart contracts. Transparency. Global participation.
+
+But they lack legal structure. Real-world grounding. Accessibility.
+
+We're merging both.
+
+COOPERATIVES          DAOs                  THE COOP REVOLUTION
+-----------------------------------------------------------------
+Legal structure       Governance on-chain   Both
+One member, one vote  Smart contracts       Both
+Economic participation Total transparency   Both
+180 years of history  Cutting-edge tech     Both
+
+The best of two worlds. Finally together.
+
+
+================================================================================
+SLIDE 6: THE COOP PROTOCOL
+================================================================================
+
+The infrastructure to create and manage cooperatives digitally.
+
+The Coop Protocol is a cooperative itself—built to serve other cooperatives. It provides the tools, templates, and technology so anyone can launch a cooperative with modern governance from day one.
+
+LAYER           WHAT IT DOES
+-----------------------------------------------------------------
+Legal           Parameterized bylaws, jurisdiction-specific compliance, open source templates
+Identity        Unique digital identity for members, works across all coops in the network
+Governance      Proposals, voting, quorum, automatic execution via smart contracts
+Treasury        Transparent financial management, visible to all members
+Registry        Immutable record of all decisions, members, and history
+
+Tech + Legal + Brand. Integrated. Open. Evolving.
+
+
+================================================================================
+SLIDE 7: HOW A COOP IS BORN
+================================================================================
+
+Creating a cooperative used to take months. Lawyers. Paperwork. Bureaucracy.
+
+With The Coop Protocol:
+
+1. Access the Protocol — online, from anywhere
+2. Configure parameters — type of coop, rules, jurisdiction
+3. System generates — legal bylaws + smart contracts
+4. Founders sign digitally — no paper, no cartório
+5. Coop is born — with governance working from minute one
+
+From idea to operating cooperative. Radically simplified.
+
+
+================================================================================
+SLIDE 8: THE FIRST WAVE
+================================================================================
+
+Five cooperatives launching together, using the Protocol:
+
+COOPERATIVE             WHAT IT DOES
+-----------------------------------------------------------------
+The Coop Protocol       The infrastructure layer
+The Coop Bank           Digital cooperative bank
+The Coop Cafe           Physical space, the movement's storefront
+The Coop Edu            Scalable cooperative education
+The Coop Futures        Think-tank and research
+
+Each one independent. Each one sovereign. All connected by protocol, brand, and values.
+
+
+================================================================================
+SLIDE 9: THE COOP BANK
+================================================================================
+
+Imagine Nubank meets Sicredi.
+
+A fully digital credit cooperative. No branches. No bureaucracy. Lean operation. Modern UX.
+
+The difference: results are actually distributed to members. Not shareholders—because there are none. Members are the owners.
+
+Transparent governance. Members vote on important decisions. Lower fees because costs are lower. Better rates because profit isn't extracted.
+
+A bank that works for you—because you own it.
+
+
+================================================================================
+SLIDE 10: THE COOP CAFE
+================================================================================
+
+A coffee shop that breaks every traditional rule.
+
+COOPERATIVE SUPPLIERS — we source from coffee cooperatives, keeping the value chain aligned.
+
+MEMBER PRICING — members get differentiated prices on beans and drinks.
+
+OPEN SPACE — the venue is free for community events. An experiment in freedom and autonomy.
+
+PAY-IT-FORWARD — buy a coffee for the next person. Generosity built into the system.
+
+SHARED RESULTS — become a member, participate in the outcomes.
+
+The first physical storefront of the movement. Starting in Florianópolis, Brazil.
+
+
+================================================================================
+SLIDE 11: THE COOP EDU
+================================================================================
+
+Cooperative education for the 21st century.
+
+The cooperative model is powerful, but nobody teaches it in a way that resonates today. Boring lectures. Outdated materials. Limited reach.
+
+The Coop Edu changes that.
+
+SCALABLE — online courses, apps, gamification.
+
+MODERN — content that speaks to today's generation.
+
+GLOBAL — English, Portuguese, Spanish. Reaching cooperatives and aspiring cooperators worldwide.
+
+REVENUE STREAMS — courses for individuals, training for existing coops, certification programs.
+
+What nobody else is doing. We will.
+
+
+================================================================================
+SLIDE 12: THE COOP FUTURES
+================================================================================
+
+The movement's think-tank.
+
+Research on cooperativism, DAOs, distributed models, and the future of work. Deep, rigorous, cutting-edge.
+
+PUBLISHING — reports, articles, podcasts, videos. In English, reaching global audiences.
+
+THOUGHT LEADERSHIP — positioning The Coop Revolution as the intellectual home of the new cooperative movement.
+
+FEEDING THE ECOSYSTEM — research becomes education (Coop Edu), informs the protocol (Coop Protocol), attracts attention and partnerships.
+
+Ideas that move the world forward.
+
+
+================================================================================
+SLIDE 13: ROLES
+================================================================================
+
+How do you participate in The Coop Revolution?
+
+ROLE            WHAT YOU DO
+-----------------------------------------------------------------
+Member          Formal member with voting rights, participates in governance
+Worker          Works in a cooperative, usually also a member
+Consumer        Uses the products and services of cooperatives
+Investor        Provides capital, with rights defined by each coop's bylaws
+Builder         Builds technology, products, infrastructure
+
+One person can hold multiple roles across multiple cooperatives.
+
+You're not locked into a box. You flow through the network based on how you want to contribute.
+
+
+================================================================================
+SLIDE 14: ECONOMICS
+================================================================================
+
+Every cooperative is self-sustaining.
+
+COOP                REVENUE SOURCE
+-----------------------------------------------------------------
+The Coop Bank       Financial services, spread, fees
+The Coop Cafe       Sales, memberships, events
+The Coop Edu        Courses, workshops, training
+The Coop Futures    Reports, sponsorships, research grants
+
+The Coop Protocol receives a fee from all cooperatives using its infrastructure. This funds ongoing development of tech, legal templates, and brand.
+
+BOOTSTRAP: Founding members contribute capital. Coops generate value. Members participate in results. Grants accelerate but don't create dependency.
+
+A flywheel: more coops → more members → stronger protocol → more coops.
+
+
+================================================================================
+SLIDE 15: WHO
+================================================================================
+
+GUI VIEGAS
+
+10 years building Pulsar—a distributed organization with no owner, no leader, no hierarchy. Consulting, strategy, and education projects for companies like Sicredi, Brazil's largest credit cooperative.
+
+Pulsar operated like a DAO before DAOs existed. Zero cost structure. Complete autonomy. Network-based entrepreneurship.
+
+Now: channeling a decade of learning into something bigger.
+
+Building The Coop Revolution.
+
+
+================================================================================
+SLIDE 16: THE ASK
+================================================================================
+
+We're looking for:
+
+CO-FOUNDERS — People to lead the first cooperatives. Coop Bank, Coop Cafe, Coop Edu, Coop Futures.
+
+FOUNDING MEMBERS — Believers who want in from day one. Contribute capital, participate in governance, shape the movement.
+
+STRATEGIC PARTNERS — Legal expertise (cooperative law, international). Tech (blockchain, identity, governance). Financial (banking, compliance).
+
+CAPITAL — To bootstrap the Protocol and first wave of cooperatives.
+
+This isn't a startup looking for a 10x exit. This is a movement looking for committed partners.
+
+
+================================================================================
+SLIDE 17: WHAT'S NEXT
+================================================================================
+
+1. WHITEPAPER — Full documentation of vision, protocol, governance. Published and open.
+
+2. FIRST COOPERATIVES — Protocol + Bank + Cafe + Edu + Futures. Legally constituted.
+
+3. COOP CAFE OPENS — Physical presence in Florianópolis. The movement becomes tangible.
+
+4. GLOBAL COMMUNITY — Members from anywhere, connected through the Protocol.
+
+The revolution starts now.
+
+
+================================================================================
+SLIDE 18: CLOSING
+================================================================================
+
+THE COOP REVOLUTION
+
+Distributed. Cooperative. Digital. By design, from day one.
+
+[website]
+[email]
+[how to join]
+
+
+================================================================================

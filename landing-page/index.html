@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE COOP Revolution — Distributed. Cooperative. Digital.</title>
+    <meta name="description" content="A movement to change how we work, build, and live. By design, from day one.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { font-size: 16px; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Space Grotesk', system-ui, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.4;
+            overflow-x: hidden;
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            position: fixed;
+            top: 1.5rem;
+            right: 2rem;
+            z-index: 200;
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.5);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            padding: 0.3rem 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .lang-btn:hover { border-color: rgba(255,255,255,0.5); color: rgba(255,255,255,0.8); }
+        .lang-btn.active { border-color: var(--white); color: var(--white); }
+
+        body.on-white .lang-btn {
+            border-color: rgba(0,0,0,0.2);
+            color: rgba(0,0,0,0.5);
+        }
+        body.on-white .lang-btn:hover { border-color: rgba(0,0,0,0.5); color: rgba(0,0,0,0.8); }
+        body.on-white .lang-btn.active { border-color: var(--black); color: var(--black); }
+
+        /* Full Page Scroll */
+        .pages {
+            height: 100vh;
+            overflow-y: auto;
+            scroll-snap-type: y mandatory;
+        }
+
+        .page {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem 8%;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page.white { background: var(--white); color: var(--black); }
+        .page.centered { text-align: center; align-items: center; }
+
+        .page-content {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        .page.centered .page-content { display: flex; flex-direction: column; align-items: center; }
+
+        /* Typography */
+        h1 {
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 0.95;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: clamp(1.75rem, 5vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+        }
+
+        p {
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            line-height: 1.7;
+            max-width: 750px;
+            color: rgba(255,255,255,0.85);
+        }
+        .page.white p { color: rgba(0,0,0,0.75); }
+        p + p { margin-top: 1.25rem; }
+
+        .tagline {
+            font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+            font-weight: 400;
+            color: rgba(255,255,255,0.65);
+        }
+
+        .statement {
+            font-size: clamp(1.35rem, 3.5vw, 2.25rem);
+            font-weight: 400;
+            line-height: 1.5;
+            max-width: 900px;
+            color: rgba(255,255,255,0.9);
+        }
+        .statement.muted { color: rgba(255,255,255,0.65); }
+        .statement strong { font-weight: 600; color: var(--white); }
+
+        .label {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .page.white .label { color: rgba(0,0,0,0.5); border-bottom-color: rgba(0,0,0,0.1); }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255,255,255,0.25);
+        }
+        .scroll-indicator span {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+        .scroll-indicator .arrow {
+            width: 16px; height: 16px;
+            border-right: 1.5px solid currentColor;
+            border-bottom: 1.5px solid currentColor;
+            transform: rotate(45deg);
+            animation: float 2s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: rotate(45deg) translateY(0); opacity: 1; }
+            50% { transform: rotate(45deg) translateY(4px); opacity: 0.5; }
+        }
+
+        /* Progress Dots */
+        .progress {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            z-index: 100;
+        }
+        .progress-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .progress-dot:hover { background: rgba(255,255,255,0.4); transform: scale(1.3); }
+        .progress-dot.active { background: var(--white); }
+        body.on-white .progress-dot { background: rgba(0,0,0,0.15); }
+        body.on-white .progress-dot:hover { background: rgba(0,0,0,0.4); }
+        body.on-white .progress-dot.active { background: var(--black); }
+
+        /* Comparison Grid - The Shift */
+        .shift-grid {
+            display: flex;
+            gap: 4rem;
+            margin-top: 3rem;
+            width: 100%;
+        }
+        .shift-col {
+            flex: 1;
+        }
+        .shift-col-header {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .shift-col.new .shift-col-header {
+            color: rgba(255,255,255,0.7);
+            border-bottom-color: rgba(255,255,255,0.2);
+        }
+        .shift-item {
+            font-size: 1.15rem;
+            line-height: 1.5;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.5);
+        }
+        .shift-col.new .shift-item {
+            color: rgba(255,255,255,0.9);
+            font-weight: 500;
+        }
+        .shift-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Layers */
+        .layers { width: 100%; margin-top: 2rem; }
+        .layer {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 2.5rem;
+            padding: 1.1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            align-items: baseline;
+        }
+        .layer:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
+        .layer-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.55);
+        }
+        .layer-desc { font-size: 1.2rem; color: rgba(255,255,255,0.8); line-height: 1.6; }
+
+        /* Cards Grid - 5 columns */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.25rem;
+            margin-top: 2rem;
+            width: 100%;
+        }
+        .card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 1.5rem 1.25rem;
+            transition: all 0.25s;
+        }
+        .card:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.2);
+        }
+        .card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+            line-height: 1.3;
+        }
+        .card h3 .brand {
+            color: rgba(255,255,255,0.45);
+            font-weight: 400;
+            font-size: 0.8rem;
+            display: block;
+        }
+        .card h3 .name { color: var(--white); font-weight: 700; }
+        .card .type {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .card p { font-size: 1rem; color: rgba(255,255,255,0.6); line-height: 1.5; max-width: none; }
+
+        /* Roles Grid - 5 columns */
+        .roles {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.25rem;
+            margin-top: 2rem;
+            width: 100%;
+        }
+        .role {
+            padding: 1.5rem 1.25rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            transition: all 0.25s;
+        }
+        .role:hover { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.03); }
+        .role .icon {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            opacity: 0.75;
+        }
+        .role h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--white); }
+        .role p { font-size: 0.95rem; color: rgba(255,255,255,0.55); line-height: 1.5; max-width: none; }
+
+        /* CTA */
+        .cta-buttons { display: flex; gap: 1.25rem; margin-top: 2rem; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2.5rem;
+            font-family: 'Space Grotesk', system-ui, sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1.5px solid;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn.primary { background: var(--white); border-color: var(--white); color: var(--black); }
+        .btn.primary:hover { background: transparent; color: var(--white); }
+        .btn.outline { background: transparent; border-color: rgba(255,255,255,0.3); color: var(--white); }
+        .btn.outline:hover { border-color: var(--white); }
+        .page.white .btn.primary { background: var(--black); border-color: var(--black); color: var(--white); }
+        .page.white .btn.primary:hover { background: transparent; color: var(--black); }
+        .page.white .btn.outline { border-color: rgba(0,0,0,0.3); color: var(--black); }
+        .page.white .btn.outline:hover { border-color: var(--black); }
+
+        /* ============================================
+           MOBILE DESIGN - Complete Redesign
+           ============================================ */
+
+        @media (max-width: 900px) {
+            .page { padding: 3rem 5%; }
+            .shift-grid { gap: 2.5rem; }
+            .cards, .roles { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+            .card, .role { padding: 1rem 0.75rem; }
+            .card h3 { font-size: 0.8rem; }
+            .card h3 .brand { font-size: 0.65rem; }
+            .card p { font-size: 0.75rem; }
+            .role .icon { font-size: 1.25rem; margin-bottom: 0.5rem; }
+            .role h4 { font-size: 0.8rem; }
+            .role p { font-size: 0.7rem; }
+        }
+
+        @media (max-width: 700px) {
+            .page { padding: 2.5rem 4%; }
+
+            h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+            h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+
+            .statement { font-size: 1.1rem; }
+
+            .shift-grid { gap: 1.5rem; }
+            .shift-col-header { font-size: 0.6rem; margin-bottom: 1rem; padding-bottom: 0.75rem; }
+            .shift-item { font-size: 0.9rem; padding: 0.7rem 0; }
+
+            .layer {
+                grid-template-columns: 80px 1fr;
+                gap: 1rem;
+                padding: 0.7rem 0;
+            }
+            .layer-name { font-size: 0.6rem; }
+            .layer-desc { font-size: 0.85rem; }
+
+            /* Cards: Horizontal scroll on mobile */
+            .cards {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 0.75rem;
+                padding-bottom: 1rem;
+                margin: 1rem -4% 0;
+                padding: 0 4% 1rem;
+                -webkit-overflow-scrolling: touch;
+            }
+            .cards::-webkit-scrollbar { display: none; }
+            .card {
+                flex: 0 0 45%;
+                min-width: 140px;
+                scroll-snap-align: start;
+                padding: 1rem;
+            }
+            .card h3 { font-size: 0.8rem; }
+            .card h3 .brand { font-size: 0.6rem; }
+            .card .type { font-size: 0.5rem; margin-bottom: 0.5rem; }
+            .card p { font-size: 0.7rem; }
+
+            /* Roles: Horizontal scroll on mobile */
+            .roles {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 0.75rem;
+                margin: 1rem -4% 0;
+                padding: 0 4% 1rem;
+                -webkit-overflow-scrolling: touch;
+            }
+            .roles::-webkit-scrollbar { display: none; }
+            .role {
+                flex: 0 0 35%;
+                min-width: 100px;
+                scroll-snap-align: start;
+                padding: 1rem 0.75rem;
+            }
+            .role .icon { font-size: 1.25rem; margin-bottom: 0.5rem; }
+            .role h4 { font-size: 0.75rem; }
+            .role p { font-size: 0.65rem; }
+
+            .progress { display: none; }
+            .lang-switcher { right: 1rem; top: 1rem; }
+            .scroll-indicator { bottom: 1.5rem; }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 0.75rem;
+                width: 100%;
+            }
+            .btn {
+                justify-content: center;
+                padding: 0.85rem 1.5rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page { padding: 2rem 4%; }
+
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.3rem; }
+            p { font-size: 0.9rem; }
+            .statement { font-size: 1rem; }
+
+            .card { flex: 0 0 55%; }
+            .role { flex: 0 0 40%; }
+        }
+
+        .scroll-hint { display: none; }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 2rem;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal {
+            background: var(--black);
+            border: 1px solid rgba(255,255,255,0.15);
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 3rem;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.5);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+        .modal-close:hover { color: var(--white); }
+        .modal-brand {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 0.25rem;
+        }
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .modal-type {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 2rem;
+        }
+        .modal-content p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 1.25rem;
+        }
+        .modal-content p:last-child { margin-bottom: 0; }
+
+        .card { cursor: pointer; }
+        .card::after {
+            content: '+';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1rem;
+            color: rgba(255,255,255,0.3);
+            transition: color 0.2s;
+        }
+        .card { position: relative; }
+        .card:hover::after { color: rgba(255,255,255,0.6); }
+
+        /* Language visibility */
+        [data-lang] { display: none; }
+        [data-lang="en"] { display: block; }
+        .lang-es [data-lang="en"] { display: none; }
+        .lang-es [data-lang="es"] { display: block; }
+        .lang-pt [data-lang="en"] { display: none; }
+        .lang-pt [data-lang="pt"] { display: block; }
+
+        /* Fix for flex containers with data-lang */
+        .cards[data-lang], .roles[data-lang], .shift-grid[data-lang] { display: none; }
+        .cards[data-lang="en"], .roles[data-lang="en"], .shift-grid[data-lang="en"] { display: grid; }
+        .shift-grid[data-lang="en"] { display: flex; }
+        .lang-es .cards[data-lang="en"], .lang-es .roles[data-lang="en"], .lang-es .shift-grid[data-lang="en"] { display: none; }
+        .lang-es .cards[data-lang="es"], .lang-es .roles[data-lang="es"] { display: grid; }
+        .lang-es .shift-grid[data-lang="es"] { display: flex; }
+        .lang-pt .cards[data-lang="en"], .lang-pt .roles[data-lang="en"], .lang-pt .shift-grid[data-lang="en"] { display: none; }
+        .lang-pt .cards[data-lang="pt"], .lang-pt .roles[data-lang="pt"] { display: grid; }
+        .lang-pt .shift-grid[data-lang="pt"] { display: flex; }
+
+        @media (max-width: 700px) {
+            .cards[data-lang="en"], .roles[data-lang="en"] { display: flex; }
+            .lang-es .cards[data-lang="es"], .lang-es .roles[data-lang="es"] { display: flex; }
+            .lang-pt .cards[data-lang="pt"], .lang-pt .roles[data-lang="pt"] { display: flex; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Language Switcher -->
+<div class="lang-switcher">
+    <button class="lang-btn active" data-switch-lang="en">EN</button>
+    <button class="lang-btn" data-switch-lang="es">ES</button>
+    <button class="lang-btn" data-switch-lang="pt">PT</button>
+</div>
+
+<!-- Progress Dots -->
+<nav class="progress">
+    <div class="progress-dot active" data-page="0"></div>
+    <div class="progress-dot" data-page="1"></div>
+    <div class="progress-dot" data-page="2"></div>
+    <div class="progress-dot" data-page="3"></div>
+    <div class="progress-dot" data-page="4"></div>
+    <div class="progress-dot" data-page="5"></div>
+    <div class="progress-dot" data-page="6"></div>
+    <div class="progress-dot" data-page="7"></div>
+    <div class="progress-dot" data-page="8"></div>
+</nav>
+
+<main class="pages">
+
+    <!-- PAGE 1: Hero -->
+    <section class="page centered">
+        <div class="page-content">
+            <h1>THE COOP<br>Revolution</h1>
+            <p class="tagline" data-lang="en">Distributed. Cooperative. Digital.<br>By design, from day one.</p>
+            <p class="tagline" data-lang="es">Distribuido. Cooperativo. Digital.<br>Por diseño, desde el primer día.</p>
+            <p class="tagline" data-lang="pt">Distribuído. Cooperativo. Digital.<br>Por design, desde o primeiro dia.</p>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="arrow"></div>
+        </div>
+    </section>
+
+    <!-- PAGE 2: Statement -->
+    <section class="page centered">
+        <div class="page-content">
+            <div data-lang="en">
+                <p class="statement">The future of work, business, and the economy is distributed, shared, and collaborative.</p>
+                <p class="statement" style="margin-top: 1.5rem;">But it only works if it's built that way from the root.</p>
+                <p class="statement muted" style="margin-top: 1.5rem;">Not as a slogan. Not as marketing.<br>As structure. As DNA. <strong>From day one.</strong></p>
+            </div>
+            <div data-lang="es">
+                <p class="statement">El futuro del trabajo, los negocios y la economía es distribuido, compartido y colaborativo.</p>
+                <p class="statement" style="margin-top: 1.5rem;">Pero solo funciona si se construye así desde la raíz.</p>
+                <p class="statement muted" style="margin-top: 1.5rem;">No como eslogan. No como marketing.<br>Como estructura. Como ADN. <strong>Desde el primer día.</strong></p>
+            </div>
+            <div data-lang="pt">
+                <p class="statement">O futuro do trabalho, dos negócios e da economia é distribuído, compartilhado e colaborativo.</p>
+                <p class="statement" style="margin-top: 1.5rem;">Mas só funciona se for construído assim desde a raiz.</p>
+                <p class="statement muted" style="margin-top: 1.5rem;">Não como slogan. Não como marketing.<br>Como estrutura. Como DNA. <strong>Desde o primeiro dia.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 3: What It Is -->
+    <section class="page">
+        <div class="page-content">
+            <span class="label" data-lang="en">What It Is</span>
+            <span class="label" data-lang="es">Qué Es</span>
+            <span class="label" data-lang="pt">O Que É</span>
+
+            <h2 data-lang="en">A movement to change how we work, build, and live.</h2>
+            <h2 data-lang="es">Un movimiento para cambiar cómo trabajamos, construimos y vivimos.</h2>
+            <h2 data-lang="pt">Um movimento para mudar como trabalhamos, construímos e vivemos.</h2>
+
+            <div data-lang="en">
+                <p>A network of cooperatives, connected by shared infrastructure, shared values, and a shared brand.</p>
+                <p>Open source. Digital-first. Born global.</p>
+            </div>
+            <div data-lang="es">
+                <p>Una red de cooperativas, conectadas por infraestructura compartida, valores compartidos y una marca compartida.</p>
+                <p>Código abierto. Digital-first. Nacido global.</p>
+            </div>
+            <div data-lang="pt">
+                <p>Uma rede de cooperativas, conectadas por infraestrutura compartilhada, valores compartilhados e uma marca compartilhada.</p>
+                <p>Open source. Digital-first. Born global.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 4: First Wave -->
+    <section class="page">
+        <div class="page-content">
+            <span class="label" data-lang="en">The First Wave</span>
+            <span class="label" data-lang="es">La Primera Ola</span>
+            <span class="label" data-lang="pt">A Primeira Onda</span>
+
+            <h2 data-lang="en">Five cooperatives launching together.</h2>
+            <h2 data-lang="es">Cinco cooperativas lanzándose juntas.</h2>
+            <h2 data-lang="pt">Cinco cooperativas nascendo juntas.</h2>
+
+            <div class="cards" data-lang="en">
+                <div class="card" data-coop="protocol"><h3><span class="brand">THE COOP</span><span class="name">Protocol</span></h3><span class="type">Infrastructure</span><p>Tech, legal, and brand for the network</p></div>
+                <div class="card" data-coop="bank"><h3><span class="brand">THE COOP</span><span class="name">Bank</span></h3><span class="type">Financial</span><p>Digital-first credit cooperative</p></div>
+                <div class="card" data-coop="cafe"><h3><span class="brand">THE COOP</span><span class="name">Cafe</span></h3><span class="type">Physical</span><p>Community space in Florianópolis</p></div>
+                <div class="card" data-coop="edu"><h3><span class="brand">THE COOP</span><span class="name">Edu</span></h3><span class="type">Education</span><p>Modern cooperative learning</p></div>
+                <div class="card" data-coop="futures"><h3><span class="brand">THE COOP</span><span class="name">Futures</span></h3><span class="type">Research</span><p>Think-tank and thought leadership</p></div>
+            </div>
+            <div class="cards" data-lang="es">
+                <div class="card" data-coop="protocol"><h3><span class="brand">THE COOP</span><span class="name">Protocol</span></h3><span class="type">Infraestructura</span><p>Tech, legal y marca para la red</p></div>
+                <div class="card" data-coop="bank"><h3><span class="brand">THE COOP</span><span class="name">Bank</span></h3><span class="type">Financiero</span><p>Cooperativa de crédito digital</p></div>
+                <div class="card" data-coop="cafe"><h3><span class="brand">THE COOP</span><span class="name">Cafe</span></h3><span class="type">Físico</span><p>Espacio comunitario en Florianópolis</p></div>
+                <div class="card" data-coop="edu"><h3><span class="brand">THE COOP</span><span class="name">Edu</span></h3><span class="type">Educación</span><p>Aprendizaje cooperativo moderno</p></div>
+                <div class="card" data-coop="futures"><h3><span class="brand">THE COOP</span><span class="name">Futures</span></h3><span class="type">Investigación</span><p>Think-tank y liderazgo intelectual</p></div>
+            </div>
+            <div class="cards" data-lang="pt">
+                <div class="card" data-coop="protocol"><h3><span class="brand">THE COOP</span><span class="name">Protocol</span></h3><span class="type">Infraestrutura</span><p>Tech, legal e marca para a rede</p></div>
+                <div class="card" data-coop="bank"><h3><span class="brand">THE COOP</span><span class="name">Bank</span></h3><span class="type">Financeiro</span><p>Cooperativa de crédito digital</p></div>
+                <div class="card" data-coop="cafe"><h3><span class="brand">THE COOP</span><span class="name">Cafe</span></h3><span class="type">Físico</span><p>Espaço comunitário em Florianópolis</p></div>
+                <div class="card" data-coop="edu"><h3><span class="brand">THE COOP</span><span class="name">Edu</span></h3><span class="type">Educação</span><p>Educação cooperativista moderna</p></div>
+                <div class="card" data-coop="futures"><h3><span class="brand">THE COOP</span><span class="name">Futures</span></h3><span class="type">Pesquisa</span><p>Think-tank e liderança intelectual</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 5: Roles -->
+    <section class="page">
+        <div class="page-content">
+            <span class="label" data-lang="en">Roles</span>
+            <span class="label" data-lang="es">Roles</span>
+            <span class="label" data-lang="pt">Papéis</span>
+
+            <h2 data-lang="en">How you participate.</h2>
+            <h2 data-lang="es">Cómo participas.</h2>
+            <h2 data-lang="pt">Como você participa.</h2>
+
+            <p data-lang="en">One person can hold multiple roles across multiple cooperatives. Start as a consumer, become a member.</p>
+            <p data-lang="es">Una persona puede tener múltiples roles en múltiples cooperativas. Empieza como consumidor, vuélvete miembro.</p>
+            <p data-lang="pt">Uma pessoa pode ter múltiplos papéis em múltiplas cooperativas. Comece como consumidor, torne-se membro.</p>
+
+            <div class="roles" data-lang="en">
+                <div class="role"><div class="icon">◯</div><h4>Member</h4><p>Full voting rights. Participates in assemblies. Shares in the results.</p></div>
+                <div class="role"><div class="icon">⬡</div><h4>Worker</h4><p>Contributes labor and expertise. Usually also a member. Part of daily operations.</p></div>
+                <div class="role"><div class="icon">△</div><h4>Investor</h4><p>Provides capital with defined rights. Not a shareholder—a partner.</p></div>
+                <div class="role"><div class="icon">□</div><h4>Builder</h4><p>Builds technology and infrastructure. Can work across multiple coops.</p></div>
+                <div class="role"><div class="icon">◇</div><h4>Consumer</h4><p>Uses products and services. The entry point. Can become a member.</p></div>
+            </div>
+            <div class="roles" data-lang="es">
+                <div class="role"><div class="icon">◯</div><h4>Miembro</h4><p>Derechos de voto plenos. Participa en asambleas. Comparte los resultados.</p></div>
+                <div class="role"><div class="icon">⬡</div><h4>Trabajador</h4><p>Contribuye trabajo y experiencia. Usualmente también es miembro. Parte de las operaciones.</p></div>
+                <div class="role"><div class="icon">△</div><h4>Inversor</h4><p>Aporta capital con derechos definidos. No es accionista—es socio.</p></div>
+                <div class="role"><div class="icon">□</div><h4>Builder</h4><p>Construye tecnología e infraestructura. Puede trabajar en múltiples coops.</p></div>
+                <div class="role"><div class="icon">◇</div><h4>Consumidor</h4><p>Usa productos y servicios. El punto de entrada. Puede volverse miembro.</p></div>
+            </div>
+            <div class="roles" data-lang="pt">
+                <div class="role"><div class="icon">◯</div><h4>Membro</h4><p>Direito a voto pleno. Participa das assembleias. Compartilha os resultados.</p></div>
+                <div class="role"><div class="icon">⬡</div><h4>Trabalhador</h4><p>Contribui trabalho e expertise. Geralmente também é membro. Parte das operações.</p></div>
+                <div class="role"><div class="icon">△</div><h4>Investidor</h4><p>Aporta capital com direitos definidos. Não é acionista—é parceiro.</p></div>
+                <div class="role"><div class="icon">□</div><h4>Builder</h4><p>Constrói tecnologia e infraestrutura. Pode trabalhar em múltiplas coops.</p></div>
+                <div class="role"><div class="icon">◇</div><h4>Consumidor</h4><p>Usa produtos e serviços. O ponto de entrada. Pode se tornar membro.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 6: The Upgrade -->
+    <section class="page">
+        <div class="page-content">
+            <span class="label" data-lang="en">The Upgrade</span>
+            <span class="label" data-lang="es">La Mejora</span>
+            <span class="label" data-lang="pt">O Upgrade</span>
+
+            <h2 data-lang="en">The best of two worlds. Finally together.</h2>
+            <h2 data-lang="es">Lo mejor de dos mundos. Finalmente juntos.</h2>
+            <h2 data-lang="pt">O melhor de dois mundos. Finalmente juntos.</h2>
+
+            <div data-lang="en">
+                <p>Cooperatives have worked for 180 years. Democratic governance. One member, one vote. But they got left behind—paper-based, local, slow.</p>
+                <p>DAOs brought programmable governance, smart contracts, transparency. But they lack legal structure and real-world grounding. <strong>We're merging both.</strong></p>
+            </div>
+            <div data-lang="es">
+                <p>Las cooperativas funcionan desde hace 180 años. Gobernanza democrática. Un miembro, un voto. Pero se quedaron atrás—basadas en papel, locales, lentas.</p>
+                <p>Las DAOs trajeron gobernanza programable, contratos inteligentes, transparencia. Pero carecen de estructura legal. <strong>Estamos fusionando ambas.</strong></p>
+            </div>
+            <div data-lang="pt">
+                <p>Cooperativas funcionam há 180 anos. Governança democrática. Um membro, um voto. Mas ficaram para trás—baseadas em papel, locais, lentas.</p>
+                <p>DAOs trouxeram governança programável, smart contracts, transparência. Mas falta estrutura legal. <strong>Estamos unindo os dois.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 7: Protocol -->
+    <section class="page">
+        <div class="page-content">
+            <span class="label" data-lang="en">Infrastructure</span>
+            <span class="label" data-lang="es">Infraestructura</span>
+            <span class="label" data-lang="pt">Infraestrutura</span>
+
+            <h2>THE COOP Protocol</h2>
+
+            <p data-lang="en">The infrastructure to create and manage cooperatives digitally.</p>
+            <p data-lang="es">La infraestructura para crear y gestionar cooperativas digitalmente.</p>
+            <p data-lang="pt">A infraestrutura para criar e gerenciar cooperativas digitalmente.</p>
+
+            <div class="layers" data-lang="en">
+                <div class="layer"><div class="layer-name">Legal</div><div class="layer-desc">Parameterized bylaws, compliance, open source templates</div></div>
+                <div class="layer"><div class="layer-name">Identity</div><div class="layer-desc">Digital identity for members, works across all coops</div></div>
+                <div class="layer"><div class="layer-name">Governance</div><div class="layer-desc">Proposals, voting, quorum, smart contract execution</div></div>
+                <div class="layer"><div class="layer-name">Treasury</div><div class="layer-desc">Transparent financial management for all members</div></div>
+                <div class="layer"><div class="layer-name">Registry</div><div class="layer-desc">Immutable record of decisions, members, history</div></div>
+            </div>
+            <div class="layers" data-lang="es">
+                <div class="layer"><div class="layer-name">Legal</div><div class="layer-desc">Estatutos parametrizados, cumplimiento, plantillas open source</div></div>
+                <div class="layer"><div class="layer-name">Identidad</div><div class="layer-desc">Identidad digital para miembros, funciona en todas las coops</div></div>
+                <div class="layer"><div class="layer-name">Gobernanza</div><div class="layer-desc">Propuestas, votación, quórum, ejecución vía smart contracts</div></div>
+                <div class="layer"><div class="layer-name">Tesorería</div><div class="layer-desc">Gestión financiera transparente para todos los miembros</div></div>
+                <div class="layer"><div class="layer-name">Registro</div><div class="layer-desc">Registro inmutable de decisiones, miembros, historia</div></div>
+            </div>
+            <div class="layers" data-lang="pt">
+                <div class="layer"><div class="layer-name">Legal</div><div class="layer-desc">Estatutos parametrizáveis, compliance, templates open source</div></div>
+                <div class="layer"><div class="layer-name">Identidade</div><div class="layer-desc">Identidade digital para membros, funciona em todas as coops</div></div>
+                <div class="layer"><div class="layer-name">Governança</div><div class="layer-desc">Propostas, votação, quórum, execução via smart contracts</div></div>
+                <div class="layer"><div class="layer-name">Tesouraria</div><div class="layer-desc">Gestão financeira transparente para todos os membros</div></div>
+                <div class="layer"><div class="layer-name">Registro</div><div class="layer-desc">Registro imutável de decisões, membros, histórico</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 8: The Shift -->
+    <section class="page">
+        <div class="page-content">
+            <span class="label" data-lang="en">The Shift</span>
+            <span class="label" data-lang="es">El Cambio</span>
+            <span class="label" data-lang="pt">A Mudança</span>
+
+            <h2 data-lang="en">We believe there's another way.</h2>
+            <h2 data-lang="es">Creemos que hay otra forma.</h2>
+            <h2 data-lang="pt">Acreditamos que existe outro caminho.</h2>
+
+            <div class="shift-grid" data-lang="en">
+                <div class="shift-col old">
+                    <div class="shift-col-header">The Old Model</div>
+                    <div class="shift-item">You work, others profit</div>
+                    <div class="shift-item">Collaboration as marketing</div>
+                    <div class="shift-item">Centralized, with owners</div>
+                    <div class="shift-item">Closed, proprietary</div>
+                    <div class="shift-item">Local by default</div>
+                </div>
+                <div class="shift-col new">
+                    <div class="shift-col-header">THE COOP Revolution</div>
+                    <div class="shift-item">Those who work are owners</div>
+                    <div class="shift-item">Collaboration as structure</div>
+                    <div class="shift-item">Distributed, with members</div>
+                    <div class="shift-item">Open source, shared</div>
+                    <div class="shift-item">Global from the start</div>
+                </div>
+            </div>
+            <div class="shift-grid" data-lang="es">
+                <div class="shift-col old">
+                    <div class="shift-col-header">El Modelo Antiguo</div>
+                    <div class="shift-item">Tú trabajas, otros ganan</div>
+                    <div class="shift-item">Colaboración como marketing</div>
+                    <div class="shift-item">Centralizado, con dueños</div>
+                    <div class="shift-item">Cerrado, propietario</div>
+                    <div class="shift-item">Local por defecto</div>
+                </div>
+                <div class="shift-col new">
+                    <div class="shift-col-header">THE COOP Revolution</div>
+                    <div class="shift-item">Quienes trabajan son dueños</div>
+                    <div class="shift-item">Colaboración como estructura</div>
+                    <div class="shift-item">Distribuido, con miembros</div>
+                    <div class="shift-item">Código abierto, compartido</div>
+                    <div class="shift-item">Global desde el inicio</div>
+                </div>
+            </div>
+            <div class="shift-grid" data-lang="pt">
+                <div class="shift-col old">
+                    <div class="shift-col-header">O Modelo Antigo</div>
+                    <div class="shift-item">Você trabalha, outros lucram</div>
+                    <div class="shift-item">Colaboração como marketing</div>
+                    <div class="shift-item">Centralizado, com donos</div>
+                    <div class="shift-item">Fechado, proprietário</div>
+                    <div class="shift-item">Local por padrão</div>
+                </div>
+                <div class="shift-col new">
+                    <div class="shift-col-header">THE COOP Revolution</div>
+                    <div class="shift-item">Quem trabalha é dono</div>
+                    <div class="shift-item">Colaboração como estrutura</div>
+                    <div class="shift-item">Distribuído, com membros</div>
+                    <div class="shift-item">Open source, compartilhado</div>
+                    <div class="shift-item">Global desde o início</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 9: CTA -->
+    <section class="page white centered">
+        <div class="page-content">
+            <span class="label" data-lang="en">Join Us</span>
+            <span class="label" data-lang="es">Únete</span>
+            <span class="label" data-lang="pt">Junte-se</span>
+
+            <h2 data-lang="en">Join THE COOP Revolution</h2>
+            <h2 data-lang="es">Únete a THE COOP Revolution</h2>
+            <h2 data-lang="pt">Junte-se à THE COOP Revolution</h2>
+
+            <div data-lang="en">
+                <p>We're looking for co-founders to lead the first cooperatives. Founding members who want in from day one. Strategic partners in legal, tech, and finance. And capital to bootstrap the movement.</p>
+                <p style="color: rgba(0,0,0,0.45);">We're building something different. A movement, not a company.</p>
+            </div>
+            <div data-lang="es">
+                <p>Buscamos co-fundadores para liderar las primeras cooperativas. Miembros fundadores que quieran estar desde el día uno. Socios estratégicos en legal, tech y finanzas. Y capital para impulsar el movimiento.</p>
+                <p style="color: rgba(0,0,0,0.45);">Estamos construyendo algo diferente. Un movimiento, no una empresa.</p>
+            </div>
+            <div data-lang="pt">
+                <p>Buscamos co-founders para liderar as primeiras cooperativas. Membros fundadores que querem estar desde o dia um. Parceiros estratégicos em legal, tech e finanças. E capital para impulsionar o movimento.</p>
+                <p style="color: rgba(0,0,0,0.45);">Estamos construindo algo diferente. Um movimento, não uma empresa.</p>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="https://wa.me/5551999894313?text=Hi%2C%20I%20want%20to%20talk%20about%20THE%20COOP%20Revolution" class="btn primary" data-lang="en">Let's Talk on WhatsApp</a>
+                <a href="https://wa.me/5551999894313?text=Hola%2C%20quiero%20hablar%20sobre%20THE%20COOP%20Revolution" class="btn primary" data-lang="es">Hablemos por WhatsApp</a>
+                <a href="https://wa.me/5551999894313?text=Oi%2C%20quero%20conversar%20sobre%20THE%20COOP%20Revolution" class="btn primary" data-lang="pt">Vamos Conversar no WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- Modal for Coop Details -->
+<div class="modal-overlay" id="coopModal">
+    <div class="modal">
+        <button class="modal-close">&times;</button>
+        <div class="modal-brand">THE COOP</div>
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <div class="modal-type" id="modalType"></div>
+        <div class="modal-content" id="modalContent"></div>
+    </div>
+</div>
+
+<script>
+    // Coop data
+    const coopData = {
+        protocol: {
+            name: 'Protocol',
+            type: { en: 'Infrastructure', es: 'Infraestructura', pt: 'Infraestrutura' },
+            content: {
+                en: `<p>The infrastructure to create and manage cooperatives digitally. A cooperative itself—built to serve other cooperatives.</p>
+                     <p>It provides the tools, templates, and technology so anyone can launch a cooperative with modern governance from day one.</p>
+                     <p><strong>Layers:</strong> Legal (parameterized bylaws, compliance), Identity (digital member ID), Governance (proposals, voting, smart contracts), Treasury (transparent finances), Registry (immutable records).</p>
+                     <p>Tech + Legal + Brand. Integrated. Open. Evolving.</p>`,
+                es: `<p>La infraestructura para crear y gestionar cooperativas digitalmente. Una cooperativa en sí misma—construida para servir a otras cooperativas.</p>
+                     <p>Proporciona las herramientas, plantillas y tecnología para que cualquiera pueda lanzar una cooperativa con gobernanza moderna desde el primer día.</p>
+                     <p><strong>Capas:</strong> Legal (estatutos parametrizados, cumplimiento), Identidad (ID digital de miembro), Gobernanza (propuestas, votación, smart contracts), Tesorería (finanzas transparentes), Registro (registros inmutables).</p>
+                     <p>Tech + Legal + Marca. Integrado. Abierto. En evolución.</p>`,
+                pt: `<p>A infraestrutura para criar e gerenciar cooperativas digitalmente. Uma cooperativa em si—construída para servir outras cooperativas.</p>
+                     <p>Fornece as ferramentas, templates e tecnologia para que qualquer um possa lançar uma cooperativa com governança moderna desde o primeiro dia.</p>
+                     <p><strong>Camadas:</strong> Legal (estatutos parametrizáveis, compliance), Identidade (ID digital de membro), Governança (propostas, votação, smart contracts), Tesouraria (finanças transparentes), Registro (registros imutáveis).</p>
+                     <p>Tech + Legal + Marca. Integrado. Aberto. Em evolução.</p>`
+            }
+        },
+        bank: {
+            name: 'Bank',
+            type: { en: 'Financial', es: 'Financiero', pt: 'Financeiro' },
+            content: {
+                en: `<p>Imagine Nubank meets Sicredi. A fully digital credit cooperative. No branches. No bureaucracy. Lean operation. Modern UX.</p>
+                     <p>The difference: results are actually distributed to members. Not shareholders—because there are none. Members are the owners.</p>
+                     <p>Transparent governance. Members vote on important decisions. Lower fees because costs are lower. Better rates because profit isn't extracted.</p>
+                     <p>A bank that works for you—because you own it.</p>`,
+                es: `<p>Imagina Nubank + Sicredi. Una cooperativa de crédito completamente digital. Sin sucursales. Sin burocracia. Operación lean. UX moderna.</p>
+                     <p>La diferencia: los resultados se distribuyen a los miembros. No hay accionistas—porque no existen. Los miembros son los dueños.</p>
+                     <p>Gobernanza transparente. Los miembros votan en decisiones importantes. Comisiones más bajas porque los costos son menores. Mejores tasas porque no se extrae ganancia.</p>
+                     <p>Un banco que trabaja para ti—porque tú lo posees.</p>`,
+                pt: `<p>Imagine Nubank + Sicredi. Uma cooperativa de crédito totalmente digital. Sem agências. Sem burocracia. Operação lean. UX moderna.</p>
+                     <p>A diferença: os resultados são distribuídos aos membros. Não há acionistas—porque não existem. Os membros são os donos.</p>
+                     <p>Governança transparente. Membros votam em decisões importantes. Taxas mais baixas porque custos são menores. Melhores condições porque lucro não é extraído.</p>
+                     <p>Um banco que trabalha para você—porque você é dono dele.</p>`
+            }
+        },
+        cafe: {
+            name: 'Cafe',
+            type: { en: 'Physical', es: 'Físico', pt: 'Físico' },
+            content: {
+                en: `<p>A coffee shop that breaks every traditional rule. The first physical storefront of the movement. Starting in Florianópolis, Brazil.</p>
+                     <p><strong>Cooperative suppliers</strong> — we source from coffee cooperatives, keeping the value chain aligned.</p>
+                     <p><strong>Member pricing</strong> — members get differentiated prices on beans and drinks.</p>
+                     <p><strong>Open space</strong> — the venue is free for community events. An experiment in freedom and autonomy.</p>
+                     <p><strong>Pay-it-forward</strong> — buy a coffee for the next person. Generosity built into the system.</p>
+                     <p><strong>Shared results</strong> — become a member, participate in the outcomes.</p>`,
+                es: `<p>Una cafetería que rompe todas las reglas tradicionales. La primera tienda física del movimiento. Comenzando en Florianópolis, Brasil.</p>
+                     <p><strong>Proveedores cooperativos</strong> — compramos de cooperativas de café, manteniendo la cadena de valor alineada.</p>
+                     <p><strong>Precios para miembros</strong> — los miembros obtienen precios diferenciados en granos y bebidas.</p>
+                     <p><strong>Espacio abierto</strong> — el lugar es gratis para eventos comunitarios. Un experimento de libertad y autonomía.</p>
+                     <p><strong>Paga adelante</strong> — compra un café para la siguiente persona. Generosidad incorporada al sistema.</p>
+                     <p><strong>Resultados compartidos</strong> — hazte miembro, participa en los resultados.</p>`,
+                pt: `<p>Uma cafeteria que quebra todas as regras tradicionais. A primeira loja física do movimento. Começando em Florianópolis, Brasil.</p>
+                     <p><strong>Fornecedores cooperativos</strong> — compramos de cooperativas de café, mantendo a cadeia de valor alinhada.</p>
+                     <p><strong>Preços para membros</strong> — membros têm preços diferenciados em grãos e bebidas.</p>
+                     <p><strong>Espaço aberto</strong> — o espaço é gratuito para eventos da comunidade. Um experimento de liberdade e autonomia.</p>
+                     <p><strong>Pague adiante</strong> — compre um café para a próxima pessoa. Generosidade construída no sistema.</p>
+                     <p><strong>Resultados compartilhados</strong> — torne-se membro, participe dos resultados.</p>`
+            }
+        },
+        edu: {
+            name: 'Edu',
+            type: { en: 'Education', es: 'Educación', pt: 'Educação' },
+            content: {
+                en: `<p>Cooperative education for the 21st century. The cooperative model is powerful, but nobody teaches it in a way that resonates today.</p>
+                     <p><strong>Scalable</strong> — online courses, apps, gamification.</p>
+                     <p><strong>Modern</strong> — content that speaks to today's generation.</p>
+                     <p><strong>Global</strong> — English, Portuguese, Spanish. Reaching cooperatives and aspiring cooperators worldwide.</p>
+                     <p><strong>Revenue streams</strong> — courses for individuals, training for existing coops, certification programs.</p>
+                     <p>What nobody else is doing. We will.</p>`,
+                es: `<p>Educación cooperativa para el siglo XXI. El modelo cooperativo es poderoso, pero nadie lo enseña de una manera que resuene hoy.</p>
+                     <p><strong>Escalable</strong> — cursos online, apps, gamificación.</p>
+                     <p><strong>Moderno</strong> — contenido que habla a la generación de hoy.</p>
+                     <p><strong>Global</strong> — inglés, portugués, español. Alcanzando cooperativas y aspirantes a cooperativistas en todo el mundo.</p>
+                     <p><strong>Fuentes de ingresos</strong> — cursos para individuos, capacitación para coops existentes, programas de certificación.</p>
+                     <p>Lo que nadie más está haciendo. Nosotros lo haremos.</p>`,
+                pt: `<p>Educação cooperativista para o século XXI. O modelo cooperativo é poderoso, mas ninguém ensina de uma forma que ressoe hoje.</p>
+                     <p><strong>Escalável</strong> — cursos online, apps, gamificação.</p>
+                     <p><strong>Moderno</strong> — conteúdo que fala com a geração de hoje.</p>
+                     <p><strong>Global</strong> — inglês, português, espanhol. Alcançando cooperativas e aspirantes a cooperativistas no mundo todo.</p>
+                     <p><strong>Fontes de receita</strong> — cursos para indivíduos, treinamento para coops existentes, programas de certificação.</p>
+                     <p>O que ninguém mais está fazendo. Nós vamos fazer.</p>`
+            }
+        },
+        futures: {
+            name: 'Futures',
+            type: { en: 'Research', es: 'Investigación', pt: 'Pesquisa' },
+            content: {
+                en: `<p>The movement's think-tank. Research on cooperativism, DAOs, distributed models, and the future of work. Deep, rigorous, cutting-edge.</p>
+                     <p><strong>Publishing</strong> — reports, articles, podcasts, videos. In English, reaching global audiences.</p>
+                     <p><strong>Thought leadership</strong> — positioning THE COOP Revolution as the intellectual home of the new cooperative movement.</p>
+                     <p><strong>Feeding the ecosystem</strong> — research becomes education (Coop Edu), informs the protocol (Coop Protocol), attracts attention and partnerships.</p>
+                     <p>Ideas that move the world forward.</p>`,
+                es: `<p>El think-tank del movimiento. Investigación sobre cooperativismo, DAOs, modelos distribuidos y el futuro del trabajo. Profundo, riguroso, de vanguardia.</p>
+                     <p><strong>Publicaciones</strong> — informes, artículos, podcasts, videos. En inglés, alcanzando audiencias globales.</p>
+                     <p><strong>Liderazgo intelectual</strong> — posicionando THE COOP Revolution como el hogar intelectual del nuevo movimiento cooperativo.</p>
+                     <p><strong>Alimentando el ecosistema</strong> — la investigación se convierte en educación (Coop Edu), informa el protocolo (Coop Protocol), atrae atención y alianzas.</p>
+                     <p>Ideas que mueven el mundo hacia adelante.</p>`,
+                pt: `<p>O think-tank do movimento. Pesquisa sobre cooperativismo, DAOs, modelos distribuídos e o futuro do trabalho. Profundo, rigoroso, de ponta.</p>
+                     <p><strong>Publicações</strong> — relatórios, artigos, podcasts, vídeos. Em inglês, alcançando audiências globais.</p>
+                     <p><strong>Liderança intelectual</strong> — posicionando THE COOP Revolution como o lar intelectual do novo movimento cooperativista.</p>
+                     <p><strong>Alimentando o ecossistema</strong> — pesquisa vira educação (Coop Edu), informa o protocolo (Coop Protocol), atrai atenção e parcerias.</p>
+                     <p>Ideias que movem o mundo para frente.</p>`
+            }
+        }
+    };
+
+    let currentLang = 'en';
+    const pages = document.querySelector('.pages');
+    const dots = document.querySelectorAll('.progress-dot');
+    const allPages = document.querySelectorAll('.page');
+    const langBtns = document.querySelectorAll('.lang-btn');
+    const modal = document.getElementById('coopModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalType = document.getElementById('modalType');
+    const modalContent = document.getElementById('modalContent');
+    const modalClose = document.querySelector('.modal-close');
+
+    // Language switching
+    function setLanguage(lang) {
+        currentLang = lang;
+        document.body.classList.remove('lang-en', 'lang-es', 'lang-pt');
+        document.body.classList.add('lang-' + lang);
+        langBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.switchLang === lang));
+        document.documentElement.lang = lang;
+    }
+
+    langBtns.forEach(btn => {
+        btn.addEventListener('click', () => setLanguage(btn.dataset.switchLang));
+    });
+
+    // Default to English
+    setLanguage('en');
+
+    // Modal functionality
+    function openModal(coopId) {
+        const coop = coopData[coopId];
+        if (!coop) return;
+
+        modalTitle.textContent = coop.name;
+        modalType.textContent = coop.type[currentLang];
+        modalContent.innerHTML = coop.content[currentLang];
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Card click handlers
+    document.querySelectorAll('.card[data-coop]').forEach(card => {
+        card.addEventListener('click', () => openModal(card.dataset.coop));
+    });
+
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+    });
+
+    // Update progress dots
+    function updateProgress() {
+        const scrollPos = pages.scrollTop;
+        const pageHeight = window.innerHeight;
+        const currentPage = Math.round(scrollPos / pageHeight);
+
+        dots.forEach((dot, i) => dot.classList.toggle('active', i === currentPage));
+
+        const currentPageEl = allPages[currentPage];
+        document.body.classList.toggle('on-white', currentPageEl?.classList.contains('white'));
+    }
+
+    pages.addEventListener('scroll', updateProgress);
+
+    // Click dots to navigate
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            pages.scrollTo({ top: parseInt(dot.dataset.page) * window.innerHeight, behavior: 'smooth' });
+        });
+    });
+
+    // Keyboard nav
+    document.addEventListener('keydown', (e) => {
+        if (modal.classList.contains('active')) return;
+        if (['ArrowDown', ' ', 'PageDown'].includes(e.key)) {
+            e.preventDefault();
+            pages.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+        } else if (['ArrowUp', 'PageUp'].includes(e.key)) {
+            e.preventDefault();
+            pages.scrollBy({ top: -window.innerHeight, behavior: 'smooth' });
+        }
+    });
+
+    updateProgress();
+</script>
+
+</body>
+</html>

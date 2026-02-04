@@ -1,0 +1,48 @@
+/* The Coop Revolution — Color System */
+
+:root {
+    /* Primary: Black & White */
+    --coop-black: #000000;
+    --coop-white: #FFFFFF;
+
+    /* Secondary: Softer versions */
+    --coop-off-black: #0A0A0A;
+    --coop-off-white: #FAFAFA;
+
+    /* Grays */
+    --coop-gray-900: #111111;
+    --coop-gray-800: #1A1A1A;
+    --coop-gray-700: #333333;
+    --coop-gray-600: #4D4D4D;
+    --coop-gray-500: #666666;
+    --coop-gray-400: #808080;
+    --coop-gray-300: #B3B3B3;
+    --coop-gray-200: #D9D9D9;
+    --coop-gray-100: #F0F0F0;
+
+    /* Accent: Use sparingly */
+    --coop-signal: #FF3B30;
+
+    /* Semantic */
+    --coop-background: var(--coop-black);
+    --coop-foreground: var(--coop-white);
+    --coop-muted: var(--coop-gray-500);
+    --coop-border: rgba(255, 255, 255, 0.1);
+
+    /* Light mode overrides */
+    --coop-background-light: var(--coop-white);
+    --coop-foreground-light: var(--coop-black);
+    --coop-border-light: rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode (default) */
+.theme-dark {
+    background-color: var(--coop-black);
+    color: var(--coop-white);
+}
+
+/* Light mode */
+.theme-light {
+    background-color: var(--coop-white);
+    color: var(--coop-black);
+}
