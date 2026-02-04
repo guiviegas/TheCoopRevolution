@@ -386,49 +386,33 @@
             .layer-name { font-size: 0.6rem; }
             .layer-desc { font-size: 0.85rem; }
 
-            /* Cards: Horizontal scroll on mobile */
+            /* Cards: Grid on mobile */
             .cards {
-                display: flex;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                gap: 0.75rem;
-                padding-bottom: 1rem;
-                margin: 1rem -4% 0;
-                padding: 0 4% 1rem;
-                -webkit-overflow-scrolling: touch;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
             }
-            .cards::-webkit-scrollbar { display: none; }
             .card {
-                flex: 0 0 45%;
-                min-width: 140px;
-                scroll-snap-align: start;
-                padding: 1rem;
+                padding: 0.75rem;
             }
-            .card h3 { font-size: 0.8rem; }
-            .card h3 .brand { font-size: 0.6rem; }
-            .card .type { font-size: 0.5rem; margin-bottom: 0.5rem; }
-            .card p { font-size: 0.7rem; }
+            .card h3 { font-size: 0.75rem; }
+            .card h3 .brand { font-size: 0.5rem; }
+            .card h3 .name { font-size: 0.85rem; }
+            .card .type { font-size: 0.45rem; margin-bottom: 0.4rem; }
+            .card p { font-size: 0.6rem; line-height: 1.4; }
+            .card:nth-child(5) { grid-column: 1 / -1; }
 
-            /* Roles: Horizontal scroll on mobile */
+            /* Roles: Grid on mobile */
             .roles {
-                display: flex;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                gap: 0.75rem;
-                margin: 1rem -4% 0;
-                padding: 0 4% 1rem;
-                -webkit-overflow-scrolling: touch;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
             }
-            .roles::-webkit-scrollbar { display: none; }
             .role {
-                flex: 0 0 35%;
-                min-width: 100px;
-                scroll-snap-align: start;
-                padding: 1rem 0.75rem;
+                padding: 0.75rem 0.5rem;
             }
-            .role .icon { font-size: 1.25rem; margin-bottom: 0.5rem; }
-            .role h4 { font-size: 0.75rem; }
-            .role p { font-size: 0.65rem; }
+            .role .icon { font-size: 1rem; margin-bottom: 0.4rem; }
+            .role h4 { font-size: 0.7rem; }
+            .role p { font-size: 0.55rem; line-height: 1.4; }
+            .role:nth-child(5) { grid-column: 1 / -1; }
 
             .progress { display: none; }
             .lang-switcher { right: 1rem; top: 1rem; }
@@ -454,8 +438,8 @@
             p { font-size: 0.9rem; }
             .statement { font-size: 1rem; }
 
-            .card { flex: 0 0 55%; }
-            .role { flex: 0 0 40%; }
+            .cards { grid-template-columns: repeat(2, 1fr); }
+            .roles { grid-template-columns: repeat(2, 1fr); }
         }
 
         .scroll-hint { display: none; }
@@ -566,9 +550,9 @@
         .lang-pt .shift-grid[data-lang="pt"] { display: flex; }
 
         @media (max-width: 700px) {
-            .cards[data-lang="en"], .roles[data-lang="en"] { display: flex; }
-            .lang-es .cards[data-lang="es"], .lang-es .roles[data-lang="es"] { display: flex; }
-            .lang-pt .cards[data-lang="pt"], .lang-pt .roles[data-lang="pt"] { display: flex; }
+            .cards[data-lang="en"], .roles[data-lang="en"] { display: grid; }
+            .lang-es .cards[data-lang="es"], .lang-es .roles[data-lang="es"] { display: grid; }
+            .lang-pt .cards[data-lang="pt"], .lang-pt .roles[data-lang="pt"] { display: grid; }
         }
     </style>
 </head>
@@ -703,9 +687,9 @@
             <h2 data-lang="es">Cómo participas.</h2>
             <h2 data-lang="pt">Como você participa.</h2>
 
-            <p data-lang="en">One person can hold multiple roles across multiple cooperatives. Start as a consumer, become a member.</p>
-            <p data-lang="es">Una persona puede tener múltiples roles en múltiples cooperativas. Empieza como consumidor, vuélvete miembro.</p>
-            <p data-lang="pt">Uma pessoa pode ter múltiplos papéis em múltiplas cooperativas. Comece como consumidor, torne-se membro.</p>
+            <p data-lang="en">One person can hold multiple roles across multiple cooperatives. Start as a consumer, become a member, invest, work, or build. You flow through the network.</p>
+            <p data-lang="es">Una persona puede tener múltiples roles en múltiples cooperativas. Empieza como consumidor, vuélvete miembro, invierte, trabaja o construye. Fluyes por la red.</p>
+            <p data-lang="pt">Uma pessoa pode ter múltiplos papéis em múltiplas cooperativas. Comece como consumidor, torne-se membro, invista, trabalhe ou construa. Você flui pela rede.</p>
 
             <div class="roles" data-lang="en">
                 <div class="role"><div class="icon">◯</div><h4>Member</h4><p>Full voting rights. Participates in assemblies. Shares in the results.</p></div>
@@ -738,21 +722,21 @@
             <span class="label" data-lang="es">La Mejora</span>
             <span class="label" data-lang="pt">O Upgrade</span>
 
-            <h2 data-lang="en">The best of two worlds. Finally together.</h2>
-            <h2 data-lang="es">Lo mejor de dos mundos. Finalmente juntos.</h2>
-            <h2 data-lang="pt">O melhor de dois mundos. Finalmente juntos.</h2>
+            <h2 data-lang="en">Coop & DAO</h2>
+            <h2 data-lang="es">Coop & DAO</h2>
+            <h2 data-lang="pt">Coop & DAO</h2>
 
             <div data-lang="en">
                 <p>Cooperatives have worked for 180 years. Democratic governance. One member, one vote. But they got left behind—paper-based, local, slow.</p>
-                <p>DAOs brought programmable governance, smart contracts, transparency. But they lack legal structure and real-world grounding. <strong>We're merging both.</strong></p>
+                <p><a href="https://ethereum.org/en/dao/" target="_blank" rel="noopener" style="color: var(--white); text-decoration: underline;">DAOs</a> (Decentralized Autonomous Organizations) brought programmable governance, smart contracts, transparency. But they lack legal structure and real-world grounding. <strong>We're merging both.</strong></p>
             </div>
             <div data-lang="es">
                 <p>Las cooperativas funcionan desde hace 180 años. Gobernanza democrática. Un miembro, un voto. Pero se quedaron atrás—basadas en papel, locales, lentas.</p>
-                <p>Las DAOs trajeron gobernanza programable, contratos inteligentes, transparencia. Pero carecen de estructura legal. <strong>Estamos fusionando ambas.</strong></p>
+                <p>Las <a href="https://ethereum.org/es/dao/" target="_blank" rel="noopener" style="color: var(--black); text-decoration: underline;">DAOs</a> (Organizaciones Autónomas Descentralizadas) trajeron gobernanza programable, contratos inteligentes, transparencia. Pero carecen de estructura legal. <strong>Estamos fusionando ambas.</strong></p>
             </div>
             <div data-lang="pt">
                 <p>Cooperativas funcionam há 180 anos. Governança democrática. Um membro, um voto. Mas ficaram para trás—baseadas em papel, locais, lentas.</p>
-                <p>DAOs trouxeram governança programável, smart contracts, transparência. Mas falta estrutura legal. <strong>Estamos unindo os dois.</strong></p>
+                <p><a href="https://ethereum.org/pt-br/dao/" target="_blank" rel="noopener" style="color: var(--white); text-decoration: underline;">DAOs</a> (Organizações Autônomas Descentralizadas) trouxeram governança programável, smart contracts, transparência. Mas falta estrutura legal. <strong>Estamos unindo os dois.</strong></p>
             </div>
         </div>
     </section>
@@ -875,21 +859,21 @@
 
             <div data-lang="en">
                 <p>We're looking for co-founders to lead the first cooperatives. Founding members who want in from day one. Strategic partners in legal, tech, and finance. And capital to bootstrap the movement.</p>
-                <p style="color: rgba(0,0,0,0.45);">We're building something different. A movement, not a company.</p>
+                <p style="color: rgba(0,0,0,0.45);">Let's schedule a call so I can present the complete vision.</p>
             </div>
             <div data-lang="es">
                 <p>Buscamos co-fundadores para liderar las primeras cooperativas. Miembros fundadores que quieran estar desde el día uno. Socios estratégicos en legal, tech y finanzas. Y capital para impulsar el movimiento.</p>
-                <p style="color: rgba(0,0,0,0.45);">Estamos construyendo algo diferente. Un movimiento, no una empresa.</p>
+                <p style="color: rgba(0,0,0,0.45);">Agendemos una llamada para presentarte la visión completa.</p>
             </div>
             <div data-lang="pt">
                 <p>Buscamos co-founders para liderar as primeiras cooperativas. Membros fundadores que querem estar desde o dia um. Parceiros estratégicos em legal, tech e finanças. E capital para impulsionar o movimento.</p>
-                <p style="color: rgba(0,0,0,0.45);">Estamos construindo algo diferente. Um movimento, não uma empresa.</p>
+                <p style="color: rgba(0,0,0,0.45);">Vamos agendar uma conversa para eu te apresentar a visão completa.</p>
             </div>
 
             <div class="cta-buttons">
-                <a href="https://wa.me/5551999894313?text=Hi%2C%20I%20want%20to%20talk%20about%20THE%20COOP%20Revolution" class="btn primary" data-lang="en">Let's Talk on WhatsApp</a>
-                <a href="https://wa.me/5551999894313?text=Hola%2C%20quiero%20hablar%20sobre%20THE%20COOP%20Revolution" class="btn primary" data-lang="es">Hablemos por WhatsApp</a>
-                <a href="https://wa.me/5551999894313?text=Oi%2C%20quero%20conversar%20sobre%20THE%20COOP%20Revolution" class="btn primary" data-lang="pt">Vamos Conversar no WhatsApp</a>
+                <a href="https://wa.me/5551999894313?text=Hi%2C%20I%20want%20to%20schedule%20a%20call%20to%20learn%20more%20about%20THE%20COOP%20Revolution" class="btn primary" data-lang="en">Schedule a Call on WhatsApp</a>
+                <a href="https://wa.me/5551999894313?text=Hola%2C%20quiero%20agendar%20una%20llamada%20para%20conocer%20más%20sobre%20THE%20COOP%20Revolution" class="btn primary" data-lang="es">Agendar Llamada por WhatsApp</a>
+                <a href="https://wa.me/5551999894313?text=Oi%2C%20quero%20agendar%20uma%20conversa%20para%20conhecer%20mais%20sobre%20THE%20COOP%20Revolution" class="btn primary" data-lang="pt">Agendar Conversa no WhatsApp</a>
             </div>
         </div>
     </section>
