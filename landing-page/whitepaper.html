@@ -12,20 +12,24 @@
 
     <style>
         :root {
-            --black: #000000;
+            --black: #0a0a0a;
             --white: #FFFFFF;
-            --sidebar-width: 280px;
+            --gray: rgba(255,255,255,0.75);
+            --sidebar-width: 260px;
+            --content-width: 820px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html { font-size: 16px; scroll-behavior: smooth; }
+        html { font-size: 18px; scroll-behavior: smooth; }
 
         body {
             font-family: 'Space Grotesk', system-ui, sans-serif;
             background: var(--black);
-            color: var(--white);
-            line-height: 1.6;
+            color: var(--gray);
+            line-height: 1.75;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* Layout */
@@ -37,85 +41,86 @@
         /* Sidebar */
         .sidebar {
             width: var(--sidebar-width);
-            background: var(--black);
-            border-right: 1px solid rgba(255,255,255,0.1);
+            background: #050505;
+            border-right: 1px solid rgba(255,255,255,0.06);
             position: fixed;
             top: 0;
             left: 0;
             height: 100vh;
             overflow-y: auto;
-            padding: 2rem 0;
+            padding: 1.75rem 0;
             z-index: 100;
+            font-size: 0.9rem;
         }
 
         .sidebar-header {
-            padding: 0 1.5rem 2rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            margin-bottom: 1.5rem;
+            padding: 0 1.25rem 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            margin-bottom: 1.25rem;
         }
 
         .sidebar-logo {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             font-weight: 700;
             letter-spacing: -0.02em;
             color: var(--white);
             text-decoration: none;
             display: block;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.2rem;
         }
 
         .sidebar-subtitle {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: rgba(255,255,255,0.4);
+            color: rgba(255,255,255,0.3);
         }
 
         /* Navigation */
         .nav-section {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
         }
 
         .nav-section-title {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
+            font-size: 0.55rem;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            color: rgba(255,255,255,0.4);
-            padding: 0 1.5rem;
-            margin-bottom: 0.75rem;
+            color: rgba(255,255,255,0.3);
+            padding: 0 1.25rem;
+            margin-bottom: 0.6rem;
         }
 
         .nav-link {
             display: block;
-            padding: 0.5rem 1.5rem;
-            color: rgba(255,255,255,0.7);
+            padding: 0.4rem 1.25rem;
+            color: rgba(255,255,255,0.55);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: all 0.2s;
             border-left: 2px solid transparent;
         }
 
         .nav-link:hover {
-            color: var(--white);
-            background: rgba(255,255,255,0.03);
+            color: rgba(255,255,255,0.85);
+            background: rgba(255,255,255,0.02);
         }
 
         .nav-link.active {
             color: var(--white);
             border-left-color: var(--white);
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.04);
         }
 
         .nav-link-sub {
-            padding-left: 2.5rem;
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.5);
+            padding-left: 2rem;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
         }
 
         .nav-link-sub:hover {
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.7);
         }
 
         /* Main Content */
@@ -129,9 +134,11 @@
         .header {
             position: sticky;
             top: 0;
-            background: var(--black);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding: 1rem 3rem;
+            background: rgba(10,10,10,0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 0.85rem 3rem;
             display: flex;
             justify-content: flex-end;
             align-items: center;
@@ -162,15 +169,16 @@
 
         /* Content Area */
         .content {
-            padding: 3rem;
-            max-width: 800px;
+            padding: 4rem 4rem 6rem;
+            max-width: var(--content-width);
+            margin: 0 auto;
         }
 
         /* Typography */
         .section {
-            margin-bottom: 4rem;
-            padding-bottom: 4rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 5rem;
+            padding-bottom: 5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
         }
 
         .section:last-child {
@@ -179,28 +187,31 @@
 
         .section-label {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: rgba(255,255,255,0.4);
-            margin-bottom: 1rem;
+            letter-spacing: 0.2em;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 1.5rem;
+            display: block;
         }
 
         h1 {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-size: clamp(2rem, 4vw, 2.75rem);
             font-weight: 700;
             letter-spacing: -0.03em;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
+            line-height: 1.15;
+            margin-bottom: 2rem;
+            color: var(--white);
         }
 
         h2 {
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            font-weight: 700;
+            font-size: clamp(1.35rem, 2.5vw, 1.6rem);
+            font-weight: 600;
             letter-spacing: -0.02em;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            margin-top: 3rem;
+            line-height: 1.25;
+            margin-bottom: 1.25rem;
+            margin-top: 3.5rem;
+            color: var(--white);
         }
 
         h2:first-of-type {
@@ -208,18 +219,19 @@
         }
 
         h3 {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             font-weight: 600;
             letter-spacing: -0.01em;
-            margin-bottom: 0.75rem;
-            margin-top: 2rem;
+            margin-bottom: 1rem;
+            margin-top: 2.5rem;
+            color: var(--white);
         }
 
         p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: rgba(255,255,255,0.85);
-            margin-bottom: 1.25rem;
+            font-size: 1rem;
+            line-height: 1.75;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
         }
 
         p:last-child {
@@ -227,54 +239,61 @@
         }
 
         .lead {
-            font-size: 1.35rem;
-            line-height: 1.6;
-            color: rgba(255,255,255,0.9);
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 2rem;
         }
 
         /* Principles */
         .principle {
-            margin-bottom: 2rem;
-            padding-left: 1.5rem;
-            border-left: 2px solid rgba(255,255,255,0.2);
+            margin-bottom: 2.5rem;
+            padding-left: 1.75rem;
+            border-left: 2px solid rgba(255,255,255,0.15);
         }
 
         .principle-number {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            color: rgba(255,255,255,0.4);
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.35);
             margin-bottom: 0.5rem;
+            letter-spacing: 0.1em;
         }
 
         .principle-title {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.65rem;
+            color: var(--white);
         }
 
         .principle-text {
-            font-size: 1rem;
-            color: rgba(255,255,255,0.7);
-            line-height: 1.6;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.7;
         }
 
         /* Lists */
         ul, ol {
-            margin: 1.25rem 0;
-            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            padding-left: 1.25rem;
         }
 
         li {
-            font-size: 1.05rem;
-            line-height: 1.7;
-            color: rgba(255,255,255,0.85);
-            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            line-height: 1.75;
+            color: var(--gray);
+            margin-bottom: 0.75rem;
+        }
+
+        li strong {
+            color: var(--white);
         }
 
         /* Tables */
         .table-wrapper {
             overflow-x: auto;
-            margin: 1.5rem 0;
+            margin: 2rem 0;
         }
 
         table {
@@ -284,31 +303,32 @@
 
         th, td {
             text-align: left;
-            padding: 0.75rem 1rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.95rem;
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            font-size: 0.9rem;
         }
 
         th {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255,255,255,0.4);
+            font-weight: 500;
         }
 
         td {
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.7);
         }
 
         /* Diagrams */
         .diagram {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 2rem;
-            margin: 1.5rem 0;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 1.75rem;
+            margin: 2rem 0;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             line-height: 1.8;
             white-space: pre;
             overflow-x: auto;
@@ -316,51 +336,59 @@
 
         /* Callouts */
         .callout {
-            background: rgba(255,255,255,0.03);
-            border-left: 3px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.02);
+            border-left: 2px solid rgba(255,255,255,0.2);
             padding: 1.25rem 1.5rem;
-            margin: 1.5rem 0;
+            margin: 2rem 0;
         }
 
         .callout-title {
             font-weight: 600;
             margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .callout p {
-            font-size: 1rem;
-            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 0;
         }
 
         /* CTA */
         .cta-section {
             text-align: center;
-            padding: 3rem;
+            padding: 4rem 3rem;
             background: var(--white);
             color: var(--black);
-            margin: 3rem -3rem -3rem;
+            margin: 4rem -4rem -6rem;
         }
 
         .cta-section h2 {
             color: var(--black);
+            margin-top: 0;
         }
 
         .cta-section p {
-            color: rgba(0,0,0,0.7);
+            color: rgba(0,0,0,0.65);
+            max-width: 500px;
+            margin: 0 auto;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
-            padding: 1rem 2.5rem;
+            padding: 0.9rem 2rem;
             font-family: 'Space Grotesk', system-ui, sans-serif;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 500;
             text-decoration: none;
             border: 1.5px solid;
             cursor: pointer;
             transition: all 0.2s;
-            margin-top: 1.5rem;
+            margin-top: 1.75rem;
         }
 
         .btn.primary {
@@ -404,11 +432,34 @@
         .lang-pt [data-lang="en"] { display: none; }
         .lang-pt [data-lang="pt"] { display: block; }
 
+        /* Large Desktop */
+        @media (min-width: 1400px) {
+            :root {
+                --content-width: 900px;
+            }
+
+            .content {
+                padding: 5rem 4rem 7rem;
+            }
+        }
+
+        /* Tablet */
+        @media (max-width: 1100px) {
+            :root {
+                --content-width: 700px;
+            }
+        }
+
         /* Mobile Styles */
         @media (max-width: 900px) {
+            html {
+                font-size: 16px;
+            }
+
             .sidebar {
                 transform: translateX(-100%);
                 transition: transform 0.3s ease;
+                width: 280px;
             }
 
             .sidebar.open {
@@ -424,17 +475,88 @@
             }
 
             .header {
-                padding: 1rem 1.5rem;
+                padding: 0.75rem 1.25rem;
                 padding-left: 4rem;
             }
 
             .content {
-                padding: 2rem 1.5rem;
+                padding: 2rem 1.5rem 4rem;
+                max-width: 100%;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+                margin-bottom: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.25rem;
+                margin-top: 2.5rem;
+            }
+
+            h3 {
+                font-size: 1.05rem;
+            }
+
+            .lead {
+                font-size: 1.05rem;
+            }
+
+            p, li {
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
+
+            .section {
+                margin-bottom: 3rem;
+                padding-bottom: 3rem;
+            }
+
+            .principle {
+                padding-left: 1.25rem;
+                margin-bottom: 2rem;
+            }
+
+            .principle-title {
+                font-size: 1rem;
+            }
+
+            .principle-text {
+                font-size: 0.9rem;
             }
 
             .cta-section {
-                margin: 2rem -1.5rem -2rem;
-                padding: 2rem 1.5rem;
+                margin: 3rem -1.5rem -4rem;
+                padding: 2.5rem 1.5rem;
+            }
+
+            .cta-section p {
+                font-size: 0.9rem;
+            }
+
+            .table-wrapper {
+                margin: 1.5rem -1.5rem;
+                padding: 0 1.5rem;
+            }
+
+            th, td {
+                padding: 0.65rem 0.75rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Small Mobile */
+        @media (max-width: 480px) {
+            .content {
+                padding: 1.5rem 1.25rem 3rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .header {
+                padding-left: 3.5rem;
             }
         }
 
@@ -463,29 +585,29 @@
     <nav>
         <div class="nav-section">
             <a href="#inicio" class="nav-link active" data-lang="en">Start Here</a>
-            <a href="#inicio" class="nav-link active" data-lang="es">Empieza Aqui</a>
+            <a href="#inicio" class="nav-link active" data-lang="es">Empieza Aquí</a>
             <a href="#inicio" class="nav-link active" data-lang="pt">Comece Aqui</a>
         </div>
 
         <div class="nav-section">
             <a href="#principios" class="nav-link" data-lang="en">The Principles</a>
             <a href="#principios" class="nav-link" data-lang="es">Los Principios</a>
-            <a href="#principios" class="nav-link" data-lang="pt">Os Principios</a>
+            <a href="#principios" class="nav-link" data-lang="pt">Os Princípios</a>
         </div>
 
         <div class="nav-section">
             <div class="nav-section-title" data-lang="en">How It Works</div>
-            <div class="nav-section-title" data-lang="es">Como Funciona</div>
+            <div class="nav-section-title" data-lang="es">Cómo Funciona</div>
             <div class="nav-section-title" data-lang="pt">Como Funciona</div>
             <a href="#rede" class="nav-link-sub" data-lang="en">A Network, Not a Company</a>
             <a href="#rede" class="nav-link-sub" data-lang="es">Una Red, No Una Empresa</a>
-            <a href="#rede" class="nav-link-sub" data-lang="pt">Uma Rede, Nao Uma Empresa</a>
+            <a href="#rede" class="nav-link-sub" data-lang="pt">Uma Rede, Não Uma Empresa</a>
             <a href="#cooperativas" class="nav-link-sub" data-lang="en">Cooperatives for Everything</a>
             <a href="#cooperativas" class="nav-link-sub" data-lang="es">Cooperativas Para Todo</a>
             <a href="#cooperativas" class="nav-link-sub" data-lang="pt">Cooperativas Para Tudo</a>
             <a href="#token" class="nav-link-sub" data-lang="en">A Token, Not a Currency</a>
             <a href="#token" class="nav-link-sub" data-lang="es">Un Token, No Una Moneda</a>
-            <a href="#token" class="nav-link-sub" data-lang="pt">Um Token, Nao Uma Moeda</a>
+            <a href="#token" class="nav-link-sub" data-lang="pt">Um Token, Não Uma Moeda</a>
             <a href="#economia" class="nav-link-sub" data-lang="en">Money That Flows</a>
             <a href="#economia" class="nav-link-sub" data-lang="es">Dinero Que Circula</a>
             <a href="#economia" class="nav-link-sub" data-lang="pt">Dinheiro Que Circula</a>
@@ -493,7 +615,7 @@
 
         <div class="nav-section">
             <div class="nav-section-title" data-lang="en">How to Participate</div>
-            <div class="nav-section-title" data-lang="es">Como Participar</div>
+            <div class="nav-section-title" data-lang="es">Cómo Participar</div>
             <div class="nav-section-title" data-lang="pt">Como Participar</div>
             <a href="#entrar" class="nav-link-sub" data-lang="en">Join a Cooperative</a>
             <a href="#entrar" class="nav-link-sub" data-lang="es">Entra en una Cooperativa</a>
@@ -508,14 +630,14 @@
 
         <div class="nav-section">
             <div class="nav-section-title" data-lang="en">Deep Dive</div>
-            <div class="nav-section-title" data-lang="es">Mas Profundo</div>
+            <div class="nav-section-title" data-lang="es">Más Profundo</div>
             <div class="nav-section-title" data-lang="pt">Mais Fundo</div>
             <a href="#governanca" class="nav-link-sub" data-lang="en">Governance in Detail</a>
             <a href="#governanca" class="nav-link-sub" data-lang="es">Gobernanza en Detalle</a>
-            <a href="#governanca" class="nav-link-sub" data-lang="pt">Governanca em Detalhe</a>
+            <a href="#governanca" class="nav-link-sub" data-lang="pt">Governança em Detalhe</a>
             <a href="#infraestrutura" class="nav-link-sub" data-lang="en">Technical Infrastructure</a>
-            <a href="#infraestrutura" class="nav-link-sub" data-lang="es">Infraestructura Tecnica</a>
-            <a href="#infraestrutura" class="nav-link-sub" data-lang="pt">Infraestrutura Tecnica</a>
+            <a href="#infraestrutura" class="nav-link-sub" data-lang="es">Infraestructura Técnica</a>
+            <a href="#infraestrutura" class="nav-link-sub" data-lang="pt">Infraestrutura Técnica</a>
             <a href="#roadmap" class="nav-link-sub" data-lang="en">The Path (Roadmap)</a>
             <a href="#roadmap" class="nav-link-sub" data-lang="es">El Camino (Roadmap)</a>
             <a href="#roadmap" class="nav-link-sub" data-lang="pt">O Caminho (Roadmap)</a>
@@ -523,7 +645,7 @@
 
         <div class="nav-section">
             <a href="#junte-se" class="nav-link" data-lang="en">Join Us</a>
-            <a href="#junte-se" class="nav-link" data-lang="es">Unete</a>
+            <a href="#junte-se" class="nav-link" data-lang="es">Únete</a>
             <a href="#junte-se" class="nav-link" data-lang="pt">Junte-se</a>
         </div>
     </nav>
@@ -559,16 +681,16 @@
                 </ul>
             </div>
             <div data-lang="es">
-                <span class="section-label">Empieza Aqui</span>
+                <span class="section-label">Empieza Aquí</span>
                 <h1>THE COOP Revolution en 2 Minutos</h1>
-                <p class="lead">Una red de cooperativas, conectadas por infraestructura compartida, valores compartidos y una marca compartida. Cada cooperativa es independiente y soberana, pero todas se benefician de ser parte de algo mas grande.</p>
-                <p>Estamos fusionando lo mejor de dos mundos: la gobernanza democratica de las cooperativas (180 anos de historia) con la transparencia programable de las DAOs (organizaciones autonomas descentralizadas).</p>
-                <p>El resultado: organizaciones donde quienes trabajan, construyen y participan son los duenos. Donde el dinero no compra poder. Donde todo es transparente. Donde la colaboracion no es un eslogan en un slide, sino la estructura misma de como funcionan las cosas.</p>
-                <h3>Que nos hace diferentes</h3>
+                <p class="lead">Una red de cooperativas, conectadas por infraestructura compartida, valores compartidos y una marca compartida. Cada cooperativa es independiente y soberana, pero todas se benefician de ser parte de algo más grande.</p>
+                <p>Estamos fusionando lo mejor de dos mundos: la gobernanza democrática de las cooperativas (180 años de historia) con la transparencia programable de las DAOs (organizaciones autónomas descentralizadas).</p>
+                <p>El resultado: organizaciones donde quienes trabajan, construyen y participan son los dueños. Donde el dinero no compra poder. Donde todo es transparente. Donde la colaboración no es un eslogan en un slide, sino la estructura misma de cómo funcionan las cosas.</p>
+                <h3>Qué nos hace diferentes</h3>
                 <ul>
-                    <li><strong>Propiedad compartida:</strong> Sin accionistas externos. Quienes participan, son duenos.</li>
+                    <li><strong>Propiedad compartida:</strong> Sin accionistas externos. Quienes participan, son dueños.</li>
                     <li><strong>Digital-first:</strong> Construido para la era de internet, accesible desde cualquier lugar.</li>
-                    <li><strong>Codigo abierto:</strong> Nuestro codigo, plantillas y conocimiento son bienes publicos.</li>
+                    <li><strong>Código abierto:</strong> Nuestro código, plantillas y conocimiento son bienes públicos.</li>
                     <li><strong>DAO-powered:</strong> Gobernanza transparente y reglas programables.</li>
                     <li><strong>Nacido global:</strong> Sin fronteras, sin limitaciones.</li>
                 </ul>
@@ -576,16 +698,16 @@
             <div data-lang="pt">
                 <span class="section-label">Comece Aqui</span>
                 <h1>THE COOP Revolution em 2 Minutos</h1>
-                <p class="lead">Uma rede de cooperativas, conectadas por infraestrutura compartilhada, valores compartilhados e uma marca compartilhada. Cada cooperativa e independente e soberana, mas todas se beneficiam de fazer parte de algo maior.</p>
-                <p>Estamos unindo o melhor de dois mundos: a governanca democratica das cooperativas (180 anos de historia) com a transparencia programavel das DAOs (organizacoes autonomas descentralizadas).</p>
-                <p>O resultado: organizacoes onde quem trabalha, constroi e participa e dono. Onde dinheiro nao compra poder. Onde tudo e transparente. Onde colaboracao nao e slogan no slide, mas a estrutura de como as coisas funcionam.</p>
+                <p class="lead">Uma rede de cooperativas, conectadas por infraestrutura compartilhada, valores compartilhados e uma marca compartilhada. Cada cooperativa é independente e soberana, mas todas se beneficiam de fazer parte de algo maior.</p>
+                <p>Estamos unindo o melhor de dois mundos: a governança democrática das cooperativas (180 anos de história) com a transparência programável das DAOs (organizações autônomas descentralizadas).</p>
+                <p>O resultado: organizações onde quem trabalha, constrói e participa é dono. Onde dinheiro não compra poder. Onde tudo é transparente. Onde colaboração não é slogan no slide, mas a estrutura de como as coisas funcionam.</p>
                 <h3>O que nos torna diferentes</h3>
                 <ul>
-                    <li><strong>Propriedade compartilhada:</strong> Sem acionistas externos. Quem participa, e dono.</li>
-                    <li><strong>Digital-first:</strong> Construido para a era da internet, acessivel de qualquer lugar.</li>
-                    <li><strong>Open source:</strong> Nosso codigo, templates e conhecimento sao bens publicos.</li>
-                    <li><strong>DAO-powered:</strong> Governanca transparente e regras programaveis.</li>
-                    <li><strong>Born global:</strong> Sem fronteiras, sem limitacoes.</li>
+                    <li><strong>Propriedade compartilhada:</strong> Sem acionistas externos. Quem participa, é dono.</li>
+                    <li><strong>Digital-first:</strong> Construído para a era da internet, acessível de qualquer lugar.</li>
+                    <li><strong>Open source:</strong> Nosso código, templates e conhecimento são bens públicos.</li>
+                    <li><strong>DAO-powered:</strong> Governança transparente e regras programáveis.</li>
+                    <li><strong>Born global:</strong> Sem fronteiras, sem limitações.</li>
                 </ul>
             </div>
         </section>
@@ -655,12 +777,12 @@
             <div data-lang="es">
                 <span class="section-label">Los Principios</span>
                 <h1>Lo Que Creemos</h1>
-                <p class="lead">Los principios fundacionales que guian todo lo que construimos.</p>
+                <p class="lead">Los principios fundacionales que guían todo lo que construimos.</p>
 
                 <div class="principle">
                     <div class="principle-number">01</div>
                     <div class="principle-title">Propiedad compartida.</div>
-                    <div class="principle-text">No hay dueno. Hay duenos. Quienes trabajan, construyen y participan comparten la propiedad. Juntos.</div>
+                    <div class="principle-text">No hay dueño. Hay dueños. Quienes trabajan, construyen y participan comparten la propiedad. Juntos.</div>
                 </div>
 
                 <div class="principle">
@@ -672,37 +794,37 @@
                 <div class="principle">
                     <div class="principle-number">03</div>
                     <div class="principle-title">Gobernanza transparente.</div>
-                    <div class="principle-text">Decisiones visibles. Finanzas visibles. Quien voto que, visible. La confianza nace de poder ver.</div>
+                    <div class="principle-text">Decisiones visibles. Finanzas visibles. Quién votó qué, visible. La confianza nace de poder ver.</div>
                 </div>
 
                 <div class="principle">
                     <div class="principle-number">04</div>
-                    <div class="principle-title">El centro esta vacio.</div>
-                    <div class="principle-text">La red es una DAO sin dueno, sin sede, sin CEO. Guarda el proposito y la cultura — el resto es de quienes hacen.</div>
+                    <div class="principle-title">El centro está vacío.</div>
+                    <div class="principle-text">La red es una DAO sin dueño, sin sede, sin CEO. Guarda el propósito y la cultura — el resto es de quienes hacen.</div>
                 </div>
 
                 <div class="principle">
                     <div class="principle-number">05</div>
                     <div class="principle-title">Cooperativas soberanas.</div>
-                    <div class="principle-text">Cada una es autonoma. Entra por eleccion, sale cuando quiere. Conectadas, nunca controladas.</div>
+                    <div class="principle-text">Cada una es autónoma. Entra por elección, sale cuando quiere. Conectadas, nunca controladas.</div>
                 </div>
 
                 <div class="principle">
                     <div class="principle-number">06</div>
                     <div class="principle-title">Digital desde el inicio.</div>
-                    <div class="principle-text">Nacio en internet, escala en internet. Herramientas modernas, gobernanza programable, sin burocracia analogica.</div>
+                    <div class="principle-text">Nació en internet, escala en internet. Herramientas modernas, gobernanza programable, sin burocracia analógica.</div>
                 </div>
 
                 <div class="principle">
                     <div class="principle-number">07</div>
-                    <div class="principle-title">Colaboracion como estructura.</div>
-                    <div class="principle-text">No es un valor en un slide. Es como se hacen las cosas. Distribuido en el ADN, desde el primer dia.</div>
+                    <div class="principle-title">Colaboración como estructura.</div>
+                    <div class="principle-text">No es un valor en un slide. Es cómo se hacen las cosas. Distribuido en el ADN, desde el primer día.</div>
                 </div>
 
                 <div class="principle">
                     <div class="principle-number">08</div>
-                    <div class="principle-title">Codigo y conocimiento abiertos.</div>
-                    <div class="principle-text">Lo que construimos se vuelve bien publico. Plantillas, herramientas, aprendizajes. Lo usa quien quiera.</div>
+                    <div class="principle-title">Código y conocimiento abiertos.</div>
+                    <div class="principle-text">Lo que construimos se vuelve bien público. Plantillas, herramientas, aprendizajes. Lo usa quien quiera.</div>
                 </div>
 
                 <div class="principle">
@@ -713,62 +835,62 @@
             </div>
 
             <div data-lang="pt">
-                <span class="section-label">Os Principios</span>
+                <span class="section-label">Os Princípios</span>
                 <h1>O Que Acreditamos</h1>
-                <p class="lead">Os principios fundacionais que guiam tudo que construimos.</p>
+                <p class="lead">Os princípios fundaciónais que guiam tudo que construimos.</p>
 
                 <div class="principle">
                     <div class="principle-number">01</div>
                     <div class="principle-title">Propriedade compartilhada.</div>
-                    <div class="principle-text">Nao tem dono. Tem donos. Quem trabalha, constroi e participa divide a propriedade. Juntos.</div>
+                    <div class="principle-text">Não tem dono. Tem donos. Quem trabalha, constrói e participa divide a propriedade. Juntos.</div>
                 </div>
 
                 <div class="principle">
                     <div class="principle-number">02</div>
-                    <div class="principle-title">Poder nao se compra.</div>
-                    <div class="principle-text">Capital pode ter retorno. Controle, nao. Governanca e das pessoas, nao do dinheiro.</div>
+                    <div class="principle-title">Poder não se compra.</div>
+                    <div class="principle-text">Capital pode ter retorno. Controle, não. Governança é das pessoas, não do dinheiro.</div>
                 </div>
 
                 <div class="principle">
                     <div class="principle-number">03</div>
-                    <div class="principle-title">Governanca transparente.</div>
-                    <div class="principle-text">Decisoes visiveis. Financas visiveis. Quem votou o que, visivel. Confianca nasce de poder ver.</div>
+                    <div class="principle-title">Governança transparente.</div>
+                    <div class="principle-text">Decisões visíveis. Finanças visíveis. Quem votou o que, visível. Confiança nasce de poder ver.</div>
                 </div>
 
                 <div class="principle">
                     <div class="principle-number">04</div>
-                    <div class="principle-title">O centro esta vazio.</div>
-                    <div class="principle-text">A rede e uma DAO sem dono, sem sede, sem CEO. Ela guarda o proposito e a cultura — o resto e de quem faz.</div>
+                    <div class="principle-title">O centro está vazio.</div>
+                    <div class="principle-text">A rede é uma DAO sem dono, sem sede, sem CEO. Ela guarda o propósito e a cultura — o resto é de quem faz.</div>
                 </div>
 
                 <div class="principle">
                     <div class="principle-number">05</div>
                     <div class="principle-title">Cooperativas soberanas.</div>
-                    <div class="principle-text">Cada uma e autonoma. Entra por escolha, sai quando quiser. Conectadas, nunca controladas.</div>
+                    <div class="principle-text">Cada uma é autônoma. Entra por escolha, sai quando quiser. Conectadas, nunca controladas.</div>
                 </div>
 
                 <div class="principle">
                     <div class="principle-number">06</div>
-                    <div class="principle-title">Digital desde o inicio.</div>
-                    <div class="principle-text">Nasceu na internet, escala na internet. Ferramentas modernas, governanca programavel, sem burocracia analogica.</div>
+                    <div class="principle-title">Digital desde o início.</div>
+                    <div class="principle-text">Nasceu na internet, escala na internet. Ferramentas modernas, governança programável, sem burocracia analógica.</div>
                 </div>
 
                 <div class="principle">
                     <div class="principle-number">07</div>
-                    <div class="principle-title">Colaboracao como estrutura.</div>
-                    <div class="principle-text">Nao e valor no slide. E como a coisa e feita. Distribuido no DNA, desde o primeiro dia.</div>
+                    <div class="principle-title">Colaboração como estrutura.</div>
+                    <div class="principle-text">Não é valor no slide. É como a coisa é feita. Distribuído no DNA, desde o primeiro dia.</div>
                 </div>
 
                 <div class="principle">
                     <div class="principle-number">08</div>
-                    <div class="principle-title">Codigo e conhecimento abertos.</div>
-                    <div class="principle-text">O que construimos vira bem publico. Templates, ferramentas, aprendizados. Usa quem quiser.</div>
+                    <div class="principle-title">Código e conhecimento abertos.</div>
+                    <div class="principle-text">O que construímos vira bem público. Templates, ferramentas, aprendizados. Usa quem quiser.</div>
                 </div>
 
                 <div class="principle">
                     <div class="principle-number">09</div>
                     <div class="principle-title">Um experimento vivo.</div>
-                    <div class="principle-text">Nao sabemos todas as respostas. Testamos, aprendemos, evoluimos. A rede e um laboratorio em movimento.</div>
+                    <div class="principle-text">Não sabemos todas as respostas. Testamos, aprendemos, evoluímos. A rede é um laboratório em movimento.</div>
                 </div>
             </div>
         </section>
@@ -806,62 +928,62 @@
             </div>
 
             <div data-lang="es">
-                <span class="section-label">Como Funciona</span>
+                <span class="section-label">Cómo Funciona</span>
                 <h1>Una Red, No Una Empresa</h1>
-                <p class="lead">La red es una DAO — una organizacion autonoma descentralizada. No tiene dueno, no tiene sede, no tiene CEO. Existe para guardar el proposito y la cultura del movimiento. Nada mas.</p>
+                <p class="lead">La red es una DAO — una organización autónoma descentralizada. No tiene dueño, no tiene sede, no tiene CEO. Existe para guardar el propósito y la cultura del movimiento. Nada más.</p>
 
-                <h2>El Centro Vacio</h2>
-                <p>Las organizaciones tradicionales tienen un centro: una junta, un CEO, una sede que toma decisiones. Nuestra red tiene un centro vacio.</p>
-                <p>La red no gobierna, no opera, no toma decisiones. Definio el proposito y los principios al inicio. El resto es de quienes hacen.</p>
-                <p>El poder esta distribuido entre las cooperativas. Cada una es soberana. La red es el espacio compartido donde coexisten.</p>
+                <h2>El Centro Vacío</h2>
+                <p>Las organizaciones tradicionales tienen un centro: una junta, un CEO, una sede que toma decisiones. Nuestra red tiene un centro vacío.</p>
+                <p>La red no gobierna, no opera, no toma decisiones. Definió el propósito y los principios al inicio. El resto es de quienes hacen.</p>
+                <p>El poder está distribuido entre las cooperativas. Cada una es soberana. La red es el espacio compartido donde coexisten.</p>
 
                 <h2>Lo Que Ofrece la Red</h2>
                 <p>La red es un commons — un recurso compartido que pertenece a todos y a nadie. Lo que ofrece:</p>
                 <ul>
-                    <li><strong>Proposito:</strong> La razon por la que existimos, el futuro que queremos construir.</li>
-                    <li><strong>Cultura:</strong> Los principios y valores que guian como hacemos las cosas.</li>
+                    <li><strong>Propósito:</strong> La razón por la que existimos, el futuro que queremos construir.</li>
+                    <li><strong>Cultura:</strong> Los principios y valores que guían cómo hacemos las cosas.</li>
                     <li><strong>Identidad:</strong> La marca compartida y lo que representa.</li>
-                    <li><strong>Infraestructura:</strong> Las herramientas, plantillas y tecnologia construidas por Coop Protocol.</li>
-                    <li><strong>Red:</strong> Conexion entre cooperativas y miembros.</li>
+                    <li><strong>Infraestructura:</strong> Las herramientas, plantillas y tecnología construidas por Coop Protocol.</li>
+                    <li><strong>Red:</strong> Conexión entre cooperativas y miembros.</li>
                 </ul>
 
                 <h2>Estructura DAO</h2>
-                <p>La red esta organizada como una DAO con un "centro vacio". En la practica, esto significa:</p>
+                <p>La red está organizada como una DAO con un "centro vacío". En la práctica, esto significa:</p>
                 <ul>
                     <li>Sin entidad central tomando decisiones por otros</li>
                     <li>Sin operaciones ni costos a nivel de red</li>
                     <li>Principios definidos al inicio, no gobernanza continua</li>
-                    <li>Las cooperativas son quienes actuan, deciden y operan</li>
+                    <li>Las cooperativas son quienes actúan, deciden y operan</li>
                 </ul>
             </div>
 
             <div data-lang="pt">
                 <span class="section-label">Como Funciona</span>
-                <h1>Uma Rede, Nao Uma Empresa</h1>
-                <p class="lead">A rede e uma DAO — uma organizacao autonoma descentralizada. Nao tem dono, nao tem sede, nao tem CEO. Existe para guardar o proposito e a cultura do movimento. Nada mais.</p>
+                <h1>Uma Rede, Não Uma Empresa</h1>
+                <p class="lead">A rede é uma DAO — uma organização autônoma descentralizada. Não tem dono, não tem sede, não tem CEO. Existe para guardar o propósito e a cultura do movimento. Nada mais.</p>
 
                 <h2>O Centro Vazio</h2>
-                <p>Organizacoes tradicionais tem um centro: um conselho, um CEO, uma sede que toma decisoes. Nossa rede tem um centro vazio.</p>
-                <p>A rede nao governa, nao opera, nao toma decisoes. Ela definiu o proposito e os principios no inicio. O resto e de quem faz.</p>
-                <p>O poder esta distribuido entre as cooperativas. Cada uma e soberana. A rede e o espaco compartilhado onde elas coexistem.</p>
+                <p>Organizações tradicionais têm um centro: um conselho, um CEO, uma sede que toma decisões. Nossa rede tem um centro vazio.</p>
+                <p>A rede não governa, não opera, não toma decisões. Ela definiu o propósito e os princípios no início. O resto é de quem faz.</p>
+                <p>O poder está distribuído entre as cooperativas. Cada uma é soberana. A rede é o espaço compartilhado onde elas coexistem.</p>
 
                 <h2>O Que a Rede Oferece</h2>
-                <p>A rede e um commons — um recurso compartilhado que pertence a todos e a ninguem. O que ela oferece:</p>
+                <p>A rede é um commons — um recurso compartilhado que pertence a todos e a ninguém. O que ela oferece:</p>
                 <ul>
-                    <li><strong>Proposito:</strong> A razao pela qual existimos, o futuro que queremos construir.</li>
-                    <li><strong>Cultura:</strong> Os principios e valores que guiam como fazemos as coisas.</li>
+                    <li><strong>Propósito:</strong> A razão pela qual existimos, o futuro que queremos construir.</li>
+                    <li><strong>Cultura:</strong> Os princípios e valores que guiam como fazemos as coisas.</li>
                     <li><strong>Identidade:</strong> A marca compartilhada e o que ela representa.</li>
-                    <li><strong>Infraestrutura:</strong> As ferramentas, templates e tecnologia construidas pelo Coop Protocol.</li>
-                    <li><strong>Rede:</strong> Conexao entre cooperativas e membros.</li>
+                    <li><strong>Infraestrutura:</strong> As ferramentas, templates e tecnologia construídas pelo Coop Protocol.</li>
+                    <li><strong>Rede:</strong> Conexão entre cooperativas e membros.</li>
                 </ul>
 
                 <h2>Estrutura DAO</h2>
-                <p>A rede e organizada como uma DAO com um "centro vazio". Na pratica, isso significa:</p>
+                <p>A rede é organizada como uma DAO com um "centro vazio". Na prática, isso significa:</p>
                 <ul>
-                    <li>Sem entidade central tomando decisoes pelos outros</li>
-                    <li>Sem operacoes ou custos no nivel da rede</li>
-                    <li>Principios definidos no inicio, nao governanca continua</li>
-                    <li>As cooperativas sao quem age, decide e opera</li>
+                    <li>Sem entidade central tomando decisões pelos outros</li>
+                    <li>Sem operações ou custos no nível da rede</li>
+                    <li>Princípios definidos no início, não governança contínua</li>
+                    <li>As cooperativas são quem age, decide e opera</li>
                 </ul>
             </div>
         </section>
@@ -937,130 +1059,130 @@
                 <h1>Cooperativas Para Todo</h1>
                 <p class="lead">Las cooperativas son donde las cosas suceden. Son quienes construyen, operan, sirven. Cada una es independiente y soberana, pero conectada a la red.</p>
 
-                <h2>Que es una Coop en la Red</h2>
-                <p>Una cooperativa en la red es una organizacion legalmente constituida que comparte los principios fundadores y usa la infraestructura compartida. Puede ser de cualquier sector: tecnologia, finanzas, alimentacion, educacion, investigacion, y mas.</p>
+                <h2>Qué es una Coop en la Red</h2>
+                <p>Una cooperativa en la red es una organización legalmente constituida que comparte los principios fundadores y usa la infraestructura compartida. Puede ser de cualquier sector: tecnología, finanzas, alimentación, educación, investigación, y más.</p>
 
                 <h2>Estructura Dorsal (Criterios de Entrada)</h2>
-                <p>Para ser parte de la red, una cooperativa debe cumplir algunos criterios basicos. Esto es lo que nos define y diferencia.</p>
+                <p>Para ser parte de la red, una cooperativa debe cumplir algunos criterios básicos. Esto es lo que nos define y diferencia.</p>
                 <div class="table-wrapper">
                     <table>
-                        <tr><th>Criterio</th><th>Por que</th></tr>
+                        <tr><th>Criterio</th><th>Por qué</th></tr>
                         <tr><td>Cooperativa legalmente constituida</td><td>Garantiza democracia interna real</td></tr>
-                        <tr><td>Propiedad colectiva</td><td>Sin dueno, pertenece a los miembros</td></tr>
+                        <tr><td>Propiedad colectiva</td><td>Sin dueño, pertenece a los miembros</td></tr>
                         <tr><td>Cuotas no transferibles</td><td>No se vuelve activo especulativo</td></tr>
                         <tr><td>Gobernanza transparente</td><td>Decisiones visibles para todos</td></tr>
-                        <tr><td>Acepta principios fundadores</td><td>Alineamiento con proposito del movimiento</td></tr>
-                        <tr><td>Registrada en infraestructura</td><td>Conectada tecnicamente a la red</td></tr>
+                        <tr><td>Acepta principios fundadores</td><td>Alineamiento con propósito del movimiento</td></tr>
+                        <tr><td>Registrada en infraestructura</td><td>Conectada técnicamente a la red</td></tr>
                     </table>
                 </div>
                 <div class="callout">
                     <div class="callout-title">Nota</div>
-                    <p>Esta es una version inicial. Necesita ser revisada y evolucionada con la practica y aprendizaje de la red.</p>
+                    <p>Esta es una versión inicial. Necesita ser revisada y evolucionada con la práctica y aprendizaje de la red.</p>
                 </div>
 
-                <h2>3 Niveles de Relacion</h2>
+                <h2>3 Niveles de Relación</h2>
                 <p>Diferentes formas de relacionarse con la red:</p>
                 <div class="table-wrapper">
                     <table>
-                        <tr><th>Nivel</th><th>Que es</th><th>Relacion</th></tr>
+                        <tr><th>Nivel</th><th>Qué es</th><th>Relación</th></tr>
                         <tr><td>Franquicia Coop</td><td>Usa marca de la red (ej: "Coop Cafe")</td><td>En la red, coop-franchising, gobernanza compartida de marca</td></tr>
                         <tr><td>Miembro de la Red</td><td>Marca propia, usa infraestructura</td><td>En la red, parte de la DAO, sigue principios</td></tr>
-                        <tr><td>Independiente</td><td>Inspirado en el modelo, lo hace a su manera</td><td>Fuera de la red, sin relacion formal</td></tr>
+                        <tr><td>Independiente</td><td>Inspirado en el modelo, lo hace a su manera</td><td>Fuera de la red, sin relación formal</td></tr>
                     </table>
                 </div>
 
                 <h2>Coop-Franchising</h2>
-                <p>Un concepto nuevo. La franquicia tradicional tiene un dueno que recibe regalias y establece reglas. El coop-franchising es diferente:</p>
+                <p>Un concepto nuevo. La franquicia tradicional tiene un dueño que recibe regalías y establece reglas. El coop-franchising es diferente:</p>
                 <ul>
                     <li>La marca pertenece a la red (commons), no a una empresa</li>
                     <li>Quien usa la marca se vuelve parte de su gobernanza</li>
                     <li>Reglas decididas colectivamente por los franquiciados</li>
-                    <li>Contribucion financiera va al commons, no a un dueno</li>
-                    <li>Calidad garantizada por reputacion colectiva</li>
+                    <li>Contribución financiera va al commons, no a un dueño</li>
+                    <li>Calidad garantizada por reputación colectiva</li>
                 </ul>
 
                 <h2>Las Primeras 5 Cooperativas</h2>
                 <p>Las cooperativas iniciales son ejemplos y plantillas. Modelos open source que pueden ser replicados en cualquier lugar.</p>
 
                 <h3>Coop Protocol</h3>
-                <p>La infraestructura para todas las demas. Construye las herramientas, plantillas y tecnologia. Ofrece dos opciones: open source (gratis, auto-hospedado) o cloud (pago, Protocol hospeda).</p>
+                <p>La infraestructura para todas las demás. Construye las herramientas, plantillas y tecnología. Ofrece dos opciones: open source (gratis, auto-hospedado) o cloud (pago, Protocol hospeda).</p>
 
                 <h3>Coop Bank</h3>
-                <p>Servicios financieros cooperativos. Banco digital sin sucursales. Resultados van a los miembros, no a accionistas. Servicios para personas y cooperativas: cuentas, credito, pagos, tesoreria.</p>
+                <p>Servicios financieros cooperativos. Banco digital sin sucursales. Resultados van a los miembros, no a accionistas. Servicios para personas y cooperativas: cuentas, crédito, pagos, tesorería.</p>
 
                 <h3>Coop Cafe</h3>
-                <p>Cadena de cafeterias cooperativas. Proveedores cooperativos, precios para miembros, resultados compartidos. Modelo fisico que puede ser replicado en cualquier ciudad.</p>
+                <p>Cadena de cafeterías cooperativas. Proveedores cooperativos, precios para miembros, resultados compartidos. Modelo físico que puede ser replicado en cualquier ciudad.</p>
 
                 <h3>Coop Edu</h3>
-                <p>Educacion cooperativa moderna y digital. Cursos online, apps, gamificacion. Ensenando el modelo cooperativo y DAO de una forma que tiene sentido hoy.</p>
+                <p>Educación cooperativa moderna y digital. Cursos online, apps, gamificación. Enseñando el modelo cooperativo y DAO de una forma que tiene sentido hoy.</p>
 
                 <h3>Coop Lab</h3>
-                <p>Think-tank de investigacion. Estudia nuevos modelos organizacionales, prueba herramientas de gobernanza, documenta aprendizajes. Lo que funciona en Lab se vuelve producto en Protocol.</p>
+                <p>Think-tank de investigación. Estudia nuevos modelos organizacionales, prueba herramientas de gobernanza, documenta aprendizajes. Lo que funciona en Lab se vuelve producto en Protocol.</p>
             </div>
 
             <div data-lang="pt">
                 <h1>Cooperativas Para Tudo</h1>
-                <p class="lead">As cooperativas sao onde as coisas acontecem. Sao elas que constroem, operam, servem. Cada uma e independente e soberana, mas conectada a rede.</p>
+                <p class="lead">As cooperativas são onde as coisas acontecem. São elas que constroem, operam, servem. Cada uma é independente e soberana, mas conectada à rede.</p>
 
-                <h2>O Que e uma Coop na Rede</h2>
-                <p>Uma cooperativa na rede e uma organizacao legalmente constituida que compartilha os principios fundadores e usa a infraestrutura compartilhada. Pode ser de qualquer setor: tecnologia, financas, alimentacao, educacao, pesquisa, e mais.</p>
+                <h2>O Que é uma Coop na Rede</h2>
+                <p>Uma cooperativa na rede é uma organização legalmente constituída que compartilha os princípios fundadores e usa a infraestrutura compartilhada. Pode ser de qualquer setor: tecnologia, finanças, alimentação, educação, pesquisa, e mais.</p>
 
-                <h2>Estrutura Dorsal (Criterios de Entrada)</h2>
-                <p>Para fazer parte da rede, uma cooperativa precisa atender alguns criterios basicos. Isso e o que nos define e diferencia.</p>
+                <h2>Estrutura Dorsal (Critérios de Entrada)</h2>
+                <p>Para fazer parte da rede, uma cooperativa precisa atender alguns critérios básicos. Isso é o que nos define e diferencia.</p>
                 <div class="table-wrapper">
                     <table>
-                        <tr><th>Criterio</th><th>Por que</th></tr>
-                        <tr><td>Cooperativa legalmente constituida</td><td>Garante democracia interna real</td></tr>
+                        <tr><th>Critério</th><th>Por quê</th></tr>
+                        <tr><td>Cooperativa legalmente constituída</td><td>Garante democracia interna real</td></tr>
                         <tr><td>Propriedade coletiva</td><td>Sem dono, pertence aos membros</td></tr>
-                        <tr><td>Quotas nao-transferiveis</td><td>Nao vira ativo especulativo</td></tr>
-                        <tr><td>Governanca transparente</td><td>Decisoes visiveis para todos</td></tr>
-                        <tr><td>Aceita principios fundadores</td><td>Alinhamento com proposito do movimento</td></tr>
-                        <tr><td>Registrada na infraestrutura</td><td>Conectada tecnicamente a rede</td></tr>
+                        <tr><td>Quotas não-transferíveis</td><td>Não vira ativo especulativo</td></tr>
+                        <tr><td>Governança transparente</td><td>Decisões visíveis para todos</td></tr>
+                        <tr><td>Aceita princípios fundadores</td><td>Alinhamento com propósito do movimento</td></tr>
+                        <tr><td>Registrada na infraestrutura</td><td>Conectada tecnicamente à rede</td></tr>
                     </table>
                 </div>
                 <div class="callout">
                     <div class="callout-title">Nota</div>
-                    <p>Esta e uma versao inicial. Precisa ser revisada e evoluida com a pratica e aprendizado da rede.</p>
+                    <p>Esta é uma versão inicial. Precisa ser revisada e evoluída com a prática e aprendizado da rede.</p>
                 </div>
 
-                <h2>3 Niveis de Relacao</h2>
+                <h2>3 Níveis de Relação</h2>
                 <p>Diferentes formas de se relacionar com a rede:</p>
                 <div class="table-wrapper">
                     <table>
-                        <tr><th>Nivel</th><th>O que e</th><th>Relacao</th></tr>
-                        <tr><td>Franquia Coop</td><td>Usa marca da rede (ex: "Coop Cafe")</td><td>Dentro da rede, coop-franchising, governanca compartilhada da marca</td></tr>
-                        <tr><td>Membro da Rede</td><td>Marca propria, usa infraestrutura</td><td>Dentro da rede, parte da DAO, segue principios</td></tr>
-                        <tr><td>Independente</td><td>Inspirado no modelo, faz do seu jeito</td><td>Fora da rede, sem relacao formal</td></tr>
+                        <tr><th>Nível</th><th>O que é</th><th>Relação</th></tr>
+                        <tr><td>Franquia Coop</td><td>Usa marca da rede (ex: "Coop Cafe")</td><td>Dentro da rede, coop-franchising, governança compartilhada da marca</td></tr>
+                        <tr><td>Membro da Rede</td><td>Marca própria, usa infraestrutura</td><td>Dentro da rede, parte da DAO, segue princípios</td></tr>
+                        <tr><td>Independente</td><td>Inspirado no modelo, faz do seu jeito</td><td>Fora da rede, sem relação formal</td></tr>
                     </table>
                 </div>
 
                 <h2>Coop-Franchising</h2>
-                <p>Um conceito novo. Franquia tradicional tem um dono que recebe royalties e define regras. Coop-franchising e diferente:</p>
+                <p>Um conceito novo. Franquia tradicional tem um dono que recebe royalties e define regras. Coop-franchising é diferente:</p>
                 <ul>
-                    <li>A marca pertence a rede (commons), nao a uma empresa</li>
-                    <li>Quem usa a marca vira parte da governanca dela</li>
+                    <li>A marca pertence à rede (commons), não a uma empresa</li>
+                    <li>Quem usa a marca vira parte da governança dela</li>
                     <li>Regras decididas coletivamente pelos franqueados</li>
-                    <li>Contribuicao financeira vai para o commons, nao para um dono</li>
-                    <li>Qualidade garantida pela reputacao coletiva</li>
+                    <li>Contribuição financeira vai para o commons, não para um dono</li>
+                    <li>Qualidade garantida pela reputação coletiva</li>
                 </ul>
 
                 <h2>As 5 Primeiras Cooperativas</h2>
-                <p>As cooperativas iniciais sao exemplos e templates. Modelos open source que podem ser replicados em qualquer lugar.</p>
+                <p>As cooperativas iniciais são exemplos e templates. Modelos open source que podem ser replicados em qualquer lugar.</p>
 
                 <h3>Coop Protocol</h3>
-                <p>A infraestrutura para todas as outras. Constroi as ferramentas, templates e tecnologia. Oferece duas opcoes: open source (gratis, self-hosted) ou cloud (pago, Protocol hospeda).</p>
+                <p>A infraestrutura para todas as outras. Constrói as ferramentas, templates e tecnologia. Oferece duas opções: open source (grátis, self-hosted) ou cloud (pago, Protocol hospeda).</p>
 
                 <h3>Coop Bank</h3>
-                <p>Servicos financeiros cooperativos. Banco digital sem agencias. Resultados vao para os membros, nao para acionistas. Servicos para pessoas e cooperativas: contas, credito, pagamentos, tesouraria.</p>
+                <p>Serviços financeiros cooperativos. Banco digital sem agências. Resultados vão para os membros, não para acionistas. Serviços para pessoas e cooperativas: contas, crédito, pagamentos, tesouraria.</p>
 
                 <h3>Coop Cafe</h3>
-                <p>Rede de cafeterias cooperativas. Fornecedores cooperativos, precos para membros, resultados compartilhados. Modelo fisico que pode ser replicado em qualquer cidade.</p>
+                <p>Rede de cafeterias cooperativas. Fornecedores cooperativos, preços para membros, resultados compartilhados. Modelo físico que pode ser replicado em qualquer cidade.</p>
 
                 <h3>Coop Edu</h3>
-                <p>Educacao cooperativa moderna e digital. Cursos online, apps, gamificacao. Ensinando o modelo cooperativo e DAO de uma forma que faz sentido hoje.</p>
+                <p>Educação cooperativa moderna e digital. Cursos online, apps, gamificação. Ensinando o modelo cooperativo e DAO de uma forma que faz sentido hoje.</p>
 
                 <h3>Coop Lab</h3>
-                <p>Think-tank de pesquisa. Estuda novos modelos organizacionais, testa ferramentas de governanca, documenta aprendizados. O que funciona no Lab vira produto no Protocol.</p>
+                <p>Think-tank de pesquisa. Estuda novos modelos organizacionais, testa ferramentas de governança, documenta aprendizados. O que funciona no Lab vira produto no Protocol.</p>
             </div>
         </section>
 
@@ -1109,22 +1231,22 @@
 
             <div data-lang="es">
                 <h1>Un Token, No Una Moneda</h1>
-                <p class="lead">El token COOP no es dinero. Es identidad, historia y senalizacion. Una forma de existir en la red y coordinarse con otros.</p>
+                <p class="lead">El token COOP no es dinero. Es identidad, historia y señalización. Una forma de existir en la red y coordinarse con otros.</p>
 
-                <h2>Que es el Token COOP</h2>
-                <p>Un unico token que lleva quien eres, que contribuiste y que senalizas a la red.</p>
+                <h2>Qué es el Token COOP</h2>
+                <p>Un único token que lleva quién eres, qué contribuiste y qué señalizas a la red.</p>
                 <ul>
                     <li><strong>Soulbound</strong> (no transferible) — te representa, no puede venderse</li>
                     <li><strong>Acumulativo</strong> — crece con tus contribuciones a lo largo del tiempo</li>
-                    <li><strong>Publico</strong> — transparencia total del historial</li>
-                    <li><strong>Experimental</strong> — empieza simple, evoluciona organicamente</li>
+                    <li><strong>Público</strong> — transparencia total del historial</li>
+                    <li><strong>Experimental</strong> — empieza simple, evoluciona orgánicamente</li>
                 </ul>
 
-                <h2>Que Hace (Senalizacion y Coordinacion)</h2>
+                <h2>Qué Hace (Señalización y Coordinación)</h2>
                 <ul>
-                    <li>Senalizar interes/apoyo para iniciativas</li>
-                    <li>Coordinar atencion colectiva ("donde esta la energia de la red?")</li>
-                    <li>Mecanismo de movilizacion — navegar la emergencia</li>
+                    <li>Señalizar interés/apoyo para iniciativas</li>
+                    <li>Coordinar atención colectiva ("¿dónde está la energía de la red?")</li>
+                    <li>Mecanismo de movilización — navegar la emergencia</li>
                     <li>Expresar preferencias sin gobernar</li>
                 </ul>
 
@@ -1140,53 +1262,53 @@
                 <p>Separadas del token COOP, cada cooperativa tiene sus propias cuotas:</p>
                 <ul>
                     <li><strong>No transferibles:</strong> No pueden venderse ni comerciarse</li>
-                    <li><strong>Participacion economica:</strong> Derecho a excedentes/dividendos</li>
+                    <li><strong>Participación económica:</strong> Derecho a excedentes/dividendos</li>
                     <li><strong>Salida:</strong> Sales de la coop, recuperas tu valor, la cuota se quema</li>
                 </ul>
 
                 <h2>El Experimento</h2>
-                <p>La parte financiera/monetaria del token es secundaria — un experimento. Las personas pueden hacer contribuciones voluntarias y observamos como fluye el valor. No es el motor, es una curiosidad cientifica para ver que emerge.</p>
+                <p>La parte financiera/monetaria del token es secundaria — un experimento. Las personas pueden hacer contribuciones voluntarias y observamos cómo fluye el valor. No es el motor, es una curiosidad científica para ver qué emerge.</p>
             </div>
 
             <div data-lang="pt">
-                <h1>Um Token, Nao Uma Moeda</h1>
-                <p class="lead">O token COOP nao e dinheiro. E identidade, historia e sinalizacao. Uma forma de existir na rede e se coordenar com outros.</p>
+                <h1>Um Token, Não Uma Moeda</h1>
+                <p class="lead">O token COOP não é dinheiro. É identidade, história e sinalização. Uma forma de existir na rede e se coordenar com outros.</p>
 
-                <h2>O Que e o Token COOP</h2>
-                <p>Um unico token que carrega quem voce e, o que voce contribuiu e o que voce sinaliza para a rede.</p>
+                <h2>O Que é o Token COOP</h2>
+                <p>Um único token que carrega quem você é, o que você contribuiu e o que você sinaliza para a rede.</p>
                 <ul>
-                    <li><strong>Soulbound</strong> (nao-transferivel) — representa voce, nao pode ser vendido</li>
-                    <li><strong>Acumulativo</strong> — cresce com suas contribuicoes ao longo do tempo</li>
-                    <li><strong>Publico</strong> — transparencia total do historico</li>
-                    <li><strong>Experimental</strong> — comeca simples, evolui organicamente</li>
+                    <li><strong>Soulbound</strong> (não-transferível) — representa você, não pode ser vendido</li>
+                    <li><strong>Acumulativo</strong> — cresce com suas contribuições ao longo do tempo</li>
+                    <li><strong>Público</strong> — transparência total do histórico</li>
+                    <li><strong>Experimental</strong> — começa simples, evolui organicamente</li>
                 </ul>
 
-                <h2>O Que Ele Faz (Sinalizacao e Coordenacao)</h2>
+                <h2>O Que Ele Faz (Sinalização e Coordenação)</h2>
                 <ul>
                     <li>Sinalizar interesse/suporte para iniciativas</li>
-                    <li>Coordenar atencao coletiva ("onde esta a energia da rede?")</li>
-                    <li>Mecanismo de mobilizacao — navegar a emergencia</li>
-                    <li>Expressar preferencias sem governar</li>
+                    <li>Coordenar atenção coletiva ("onde está a energia da rede?")</li>
+                    <li>Mecanismo de mobilização — navegar a emergência</li>
+                    <li>Expressar preferências sem governar</li>
                 </ul>
 
-                <h2>O Que NAO E</h2>
+                <h2>O Que NÃO É</h2>
                 <ul>
-                    <li>Nao da acesso exclusivo a nada</li>
-                    <li>Nao e poder de voto na DAO (centro vazio, sem decisoes)</li>
-                    <li>Nao tem valor monetario direto</li>
-                    <li>Nao e token de governanca tradicional</li>
+                    <li>Não dá acesso exclusivo a nada</li>
+                    <li>Não é poder de voto na DAO (centro vazio, sem decisões)</li>
+                    <li>Não tem valor monetário direto</li>
+                    <li>Não é token de governança tradicional</li>
                 </ul>
 
                 <h2>Quotas de Cooperativa</h2>
-                <p>Separadas do token COOP, cada cooperativa tem suas proprias quotas:</p>
+                <p>Separadas do token COOP, cada cooperativa tem suas próprias quotas:</p>
                 <ul>
-                    <li><strong>Nao-transferiveis:</strong> Nao podem ser vendidas ou negociadas</li>
-                    <li><strong>Participacao economica:</strong> Direito a excedentes/dividendos</li>
-                    <li><strong>Saida:</strong> Sai da coop, recebe seu valor de volta, quota e queimada</li>
+                    <li><strong>Não-transferíveis:</strong> Não podem ser vendidas ou negociadas</li>
+                    <li><strong>Participação econômica:</strong> Direito a excedentes/dividendos</li>
+                    <li><strong>Saída:</strong> Sai da coop, recebe seu valor de volta, quota é queimada</li>
                 </ul>
 
                 <h2>O Experimento</h2>
-                <p>A parte financeira/monetaria do token e secundaria — um experimento. Pessoas podem fazer contribuicoes voluntarias e observamos como valor flui. Nao e o motor, e uma curiosidade cientifica para ver o que emerge.</p>
+                <p>A parte financeira/monetária do token é secundária — um experimento. Pessoas podem fazer contribuições voluntárias e observamos como valor flui. Não é o motor, é uma curiosidade científica para ver o que emerge.</p>
             </div>
         </section>
 
@@ -1219,52 +1341,52 @@
 
             <div data-lang="es">
                 <h1>Dinero Que Circula</h1>
-                <p class="lead">Como circula el valor en la red. Sin extraccion, sin accionistas llevandose ganancias. El dinero fluye hacia quienes crean valor.</p>
+                <p class="lead">Cómo circula el valor en la red. Sin extracción, sin accionistas llevándose ganancias. El dinero fluye hacia quienes crean valor.</p>
 
                 <h2>Flujo 1: Dentro de Cada Coop</h2>
                 <p>Cada cooperativa genera ingresos de su negocio y decide internamente:</p>
                 <ul>
-                    <li>Cuanto va a costos operacionales</li>
-                    <li>Cuanto va a reserva/fondo comun</li>
-                    <li>Cuanto se distribuye a los miembros</li>
+                    <li>Cuánto va a costos operacionales</li>
+                    <li>Cuánto va a reserva/fondo común</li>
+                    <li>Cuánto se distribuye a los miembros</li>
                 </ul>
 
                 <h2>Flujo 2: Entre Cooperativas</h2>
-                <p>Las cooperativas hacen transacciones directamente entre si. Coop Edu contrata Coop Cafe para un espacio de evento. Coop Protocol provee infraestructura para Coop Bank. Pagos directos, sin intermediario, sin comision de red.</p>
+                <p>Las cooperativas hacen transacciones directamente entre sí. Coop Edu contrata Coop Cafe para un espacio de evento. Coop Protocol provee infraestructura para Coop Bank. Pagos directos, sin intermediario, sin comisión de red.</p>
 
                 <h2>Flujo 3: Coops a Protocol</h2>
-                <p>Quienes usan la infraestructura cloud pagan una suscripcion a Protocol. Quienes usan open source no pagan nada. Precios simples, accesibles.</p>
+                <p>Quienes usan la infraestructura cloud pagan una suscripción a Protocol. Quienes usan open source no pagan nada. Precios simples, accesibles.</p>
 
                 <h2>Flujo 4: Contribuciones Voluntarias</h2>
-                <p>Cualquiera puede contribuir voluntariamente a la tesoreria de la red. Es un experimento: inyectamos valor real y observamos hacia donde fluye, que emerge.</p>
+                <p>Cualquiera puede contribuir voluntariamente a la tesorería de la red. Es un experimento: inyectamos valor real y observamos hacia dónde fluye, qué emerge.</p>
 
                 <h2>Flujo 5: Franquicias a Marca Colectiva</h2>
-                <p>Quienes usan una marca colectiva (como Coop Cafe) contribuyen a un fondo comun gestionado por todos los franquiciados. Este fondo se usa para marketing colectivo, desarrollo de nuevos modelos, apoyo a nuevas franquicias.</p>
+                <p>Quienes usan una marca colectiva (como Coop Cafe) contribuyen a un fondo común gestionado por todos los franquiciados. Este fondo se usa para marketing colectivo, desarrollo de nuevos modelos, apoyo a nuevas franquicias.</p>
             </div>
 
             <div data-lang="pt">
                 <h1>Dinheiro Que Circula</h1>
-                <p class="lead">Como valor circula na rede. Sem extracao, sem acionistas levando lucros. Dinheiro flui para quem cria valor.</p>
+                <p class="lead">Como valor circula na rede. Sem extração, sem acionistas levando lucros. Dinheiro flui para quem cria valor.</p>
 
                 <h2>Fluxo 1: Dentro de Cada Coop</h2>
-                <p>Cada cooperativa gera receita do seu negocio e decide internamente:</p>
+                <p>Cada cooperativa gera receita do seu negócio e decide internamente:</p>
                 <ul>
                     <li>Quanto vai para custos operacionais</li>
                     <li>Quanto vai para reserva/fundo comum</li>
-                    <li>Quanto e distribuido para os membros</li>
+                    <li>Quanto é distribuído para os membros</li>
                 </ul>
 
                 <h2>Fluxo 2: Entre Cooperativas</h2>
-                <p>Cooperativas transacionam diretamente entre si. Coop Edu contrata Coop Cafe para um espaco de evento. Coop Protocol fornece infraestrutura para Coop Bank. Pagamentos diretos, sem intermediario, sem taxa da rede.</p>
+                <p>Cooperativas transacionam diretamente entre si. Coop Edu contrata Coop Cafe para um espaço de evento. Coop Protocol fornece infraestrutura para Coop Bank. Pagamentos diretos, sem intermediário, sem taxa da rede.</p>
 
                 <h2>Fluxo 3: Coops para Protocol</h2>
-                <p>Quem usa a infraestrutura cloud paga uma assinatura para o Protocol. Quem usa open source nao paga nada. Precos simples, acessiveis.</p>
+                <p>Quem usa a infraestrutura cloud paga uma assinatura para o Protocol. Quem usa open source não paga nada. Preços simples, acessíveis.</p>
 
-                <h2>Fluxo 4: Contribuicoes Voluntarias</h2>
-                <p>Qualquer um pode contribuir voluntariamente para o treasury da rede. E um experimento: injetamos valor real e observamos para onde flui, o que emerge.</p>
+                <h2>Fluxo 4: Contribuições Voluntárias</h2>
+                <p>Qualquer um pode contribuir voluntariamente para o treasury da rede. É um experimento: injetamos valor real e observamos para onde flui, o que emerge.</p>
 
                 <h2>Fluxo 5: Franquias para Marca Coletiva</h2>
-                <p>Quem usa uma marca coletiva (como Coop Cafe) contribui para um fundo comum gerido por todos os franqueados. Esse fundo e usado para marketing coletivo, desenvolvimento de novos modelos, suporte a novas franquias.</p>
+                <p>Quem usa uma marca coletiva (como Coop Cafe) contribui para um fundo comum gerido por todos os franqueados. Esse fundo é usado para marketing coletivo, desenvolvimento de novos modelos, suporte a novas franquias.</p>
             </div>
         </section>
 
@@ -1287,17 +1409,17 @@
             </div>
 
             <div data-lang="es">
-                <span class="section-label">Como Participar</span>
+                <span class="section-label">Cómo Participar</span>
                 <h1>Entra en una Cooperativa</h1>
-                <p class="lead">La mejor forma de aprender es haciendo. Entra en una cooperativa existente y vive el modelo en la practica.</p>
+                <p class="lead">La mejor forma de aprender es haciendo. Entra en una cooperativa existente y vive el modelo en la práctica.</p>
 
                 <h2>La Jornada</h2>
-                <p>No hay curso, no hay certificacion. Aprendes participando:</p>
+                <p>No hay curso, no hay certificación. Aprendes participando:</p>
                 <ul>
                     <li>Entra en una cooperativa existente</li>
-                    <li>Vive el modelo en la practica</li>
+                    <li>Vive el modelo en la práctica</li>
                     <li>Ejerce diferentes roles</li>
-                    <li>Cuando estes listo, crea la tuya o replica una</li>
+                    <li>Cuando estés listo, crea la tuya o replica una</li>
                 </ul>
                 <p>La red es la escuela.</p>
             </div>
@@ -1305,17 +1427,17 @@
             <div data-lang="pt">
                 <span class="section-label">Como Participar</span>
                 <h1>Entre numa Cooperativa</h1>
-                <p class="lead">A melhor forma de aprender e fazendo. Entre numa cooperativa existente e viva o modelo na pratica.</p>
+                <p class="lead">A melhor forma de aprender é fazendo. Entre numa cooperativa existente e viva o modelo na prática.</p>
 
                 <h2>A Jornada</h2>
-                <p>Nao tem curso, nao tem certificacao. Voce aprende participando:</p>
+                <p>Não tem curso, não tem certificação. Você aprende participando:</p>
                 <ul>
                     <li>Entre numa cooperativa existente</li>
-                    <li>Viva o modelo na pratica</li>
-                    <li>Exercite diferentes papeis</li>
+                    <li>Viva o modelo na prática</li>
+                    <li>Exercite diferentes papéis</li>
                     <li>Quando estiver pronto, crie a sua ou replique uma</li>
                 </ul>
-                <p>A rede e a escola.</p>
+                <p>A rede é a escola.</p>
             </div>
         </section>
 
@@ -1348,50 +1470,50 @@
 
             <div data-lang="es">
                 <h1>Crea la Tuya</h1>
-                <p class="lead">Quieres iniciar una nueva cooperativa en la red? Todo esta abierto y disponible.</p>
+                <p class="lead">¿Quieres iniciar una nueva cooperativa en la red? Todo está abierto y disponible.</p>
 
                 <h2>Usando Plantillas</h2>
                 <p>Protocol ofrece plantillas listas para:</p>
                 <ul>
-                    <li>Distribucion de excedentes</li>
+                    <li>Distribución de excedentes</li>
                     <li>Gobernanza</li>
-                    <li>Admision de miembros</li>
+                    <li>Admisión de miembros</li>
                     <li>Roles</li>
-                    <li>Gestion financiera</li>
+                    <li>Gestión financiera</li>
                 </ul>
                 <p>Elige, personaliza, lanza.</p>
 
                 <h2>Dos Caminos</h2>
                 <div class="table-wrapper">
                     <table>
-                        <tr><th>Opcion</th><th>Descripcion</th><th>Costo</th></tr>
-                        <tr><td>Open Source</td><td>Codigo abierto, tu hospedas y mantienes</td><td>Gratis</td></tr>
-                        <tr><td>Cloud</td><td>Protocol hospeda, todo incluido</td><td>Suscripcion</td></tr>
+                        <tr><th>Opción</th><th>Descripción</th><th>Costo</th></tr>
+                        <tr><td>Open Source</td><td>Código abierto, tú hospedas y mantienes</td><td>Gratis</td></tr>
+                        <tr><td>Cloud</td><td>Protocol hospeda, todo incluido</td><td>Suscripción</td></tr>
                     </table>
                 </div>
             </div>
 
             <div data-lang="pt">
                 <h1>Crie a Sua</h1>
-                <p class="lead">Quer comecar uma nova cooperativa na rede? Tudo esta aberto e disponivel.</p>
+                <p class="lead">Quer começar uma nova cooperativa na rede? Tudo está aberto e disponível.</p>
 
                 <h2>Usando Templates</h2>
                 <p>Protocol oferece templates prontos para:</p>
                 <ul>
-                    <li>Distribuicao de excedente</li>
-                    <li>Governanca</li>
-                    <li>Admissao de membros</li>
-                    <li>Papeis</li>
-                    <li>Gestao financeira</li>
+                    <li>Distribuição de excedente</li>
+                    <li>Governança</li>
+                    <li>Admissão de membros</li>
+                    <li>Papéis</li>
+                    <li>Gestão financeira</li>
                 </ul>
                 <p>Escolha, customize, lance.</p>
 
                 <h2>Dois Caminhos</h2>
                 <div class="table-wrapper">
                     <table>
-                        <tr><th>Opcao</th><th>Descricao</th><th>Custo</th></tr>
-                        <tr><td>Open Source</td><td>Codigo aberto, voce hospeda e mantem</td><td>Gratis</td></tr>
-                        <tr><td>Cloud</td><td>Protocol hospeda, tudo incluido</td><td>Assinatura</td></tr>
+                        <tr><th>Opção</th><th>Descrição</th><th>Custo</th></tr>
+                        <tr><td>Open Source</td><td>Código aberto, você hospeda e mantém</td><td>Grátis</td></tr>
+                        <tr><td>Cloud</td><td>Protocol hospeda, tudo incluído</td><td>Assinatura</td></tr>
                     </table>
                 </div>
             </div>
@@ -1415,10 +1537,10 @@
 
             <div data-lang="es">
                 <h1>Otras Formas de Contribuir</h1>
-                <p class="lead">No estas listo para unirte o crear una coop? Hay otras formas de participar.</p>
+                <p class="lead">¿No estás listo para unirte o crear una coop? Hay otras formas de participar.</p>
 
                 <h3>Como Builder</h3>
-                <p>Construye lo que la red necesita: tecnologia, productos, marcas, procesos. Puede trabajar en multiples coops.</p>
+                <p>Construye lo que la red necesita: tecnología, productos, marcas, procesos. Puede trabajar en múltiples coops.</p>
 
                 <h3>Como Inversor</h3>
                 <p>Un miembro que decide invertir y obtener retornos sobre su capital en las cooperativas de la red. Recuerda: invertir no compra poder.</p>
@@ -1429,16 +1551,16 @@
 
             <div data-lang="pt">
                 <h1>Outras Formas de Contribuir</h1>
-                <p class="lead">Nao esta pronto para entrar ou criar uma coop? Ha outras formas de participar.</p>
+                <p class="lead">Não está pronto para entrar ou criar uma coop? Há outras formas de participar.</p>
 
                 <h3>Como Builder</h3>
-                <p>Construa o que a rede precisa: tecnologia, produtos, marcas, processos. Pode trabalhar em multiplas coops.</p>
+                <p>Construa o que a rede precisa: tecnologia, produtos, marcas, processos. Pode trabalhar em múltiplas coops.</p>
 
                 <h3>Como Investidor</h3>
-                <p>Um membro que decide investir e ter retorno sobre seu capital nas cooperativas da rede. Lembre-se: investir nao compra poder.</p>
+                <p>Um membro que decide investir e ter retorno sobre seu capital nas cooperativas da rede. Lembre-se: investir não compra poder.</p>
 
                 <h3>Como Consumidor</h3>
-                <p>Use produtos e servicos das cooperativas da rede. O ponto de entrada. Pode se tornar membro a qualquer momento.</p>
+                <p>Use produtos e serviços das cooperativas da rede. O ponto de entrada. Pode se tornar membro a qualquer momento.</p>
             </div>
         </section>
 
@@ -1485,82 +1607,82 @@
             </div>
 
             <div data-lang="es">
-                <span class="section-label">Mas Profundo</span>
+                <span class="section-label">Más Profundo</span>
                 <h1>Gobernanza en Detalle</h1>
                 <p class="lead">Las herramientas de gobernanza disponibles para cooperativas en la red.</p>
 
                 <h2>Base Legal: 1 Persona 1 Voto</h2>
-                <p>Para ser una cooperativa legal, el minimo es una persona, un voto en decisiones fundamentales. Esto es innegociable — es lo que nos hace cooperativa.</p>
-                <p>Pero mas alla del minimo legal, todo es experimental. Cada cooperativa puede adoptar diferentes herramientas del menu.</p>
+                <p>Para ser una cooperativa legal, el mínimo es una persona, un voto en decisiones fundamentales. Esto es innegociable — es lo que nos hace cooperativa.</p>
+                <p>Pero más allá del mínimo legal, todo es experimental. Cada cooperativa puede adoptar diferentes herramientas del menú.</p>
 
-                <h2>El Menu de Herramientas</h2>
-                <p>Protocol ofrece un menu de herramientas de gobernanza. Cada coop elige lo que tiene sentido para ella:</p>
+                <h2>El Menú de Herramientas</h2>
+                <p>Protocol ofrece un menú de herramientas de gobernanza. Cada coop elige lo que tiene sentido para ella:</p>
 
-                <h3>Votacion y Decision</h3>
+                <h3>Votación y Decisión</h3>
                 <ul>
-                    <li><strong>Votacion cuadratica:</strong> Expresar intensidad de preferencia</li>
+                    <li><strong>Votación cuadrática:</strong> Expresar intensidad de preferencia</li>
                     <li><strong>Conviction voting:</strong> Peso aumenta con tiempo de compromiso</li>
-                    <li><strong>Consentimiento (sociocracia):</strong> Pasa si nadie tiene objecion razonada</li>
-                    <li><strong>Delegacion liquida:</strong> Delegar tu voto por tema a especialistas</li>
-                    <li><strong>Lazy consensus:</strong> Pasa automaticamente si nadie objeta en X dias</li>
+                    <li><strong>Consentimiento (sociocracia):</strong> Pasa si nadie tiene objeción razonada</li>
+                    <li><strong>Delegación líquida:</strong> Delegar tu voto por tema a especialistas</li>
+                    <li><strong>Lazy consensus:</strong> Pasa automáticamente si nadie objeta en X días</li>
                 </ul>
 
-                <h3>Proteccion y Seguridad</h3>
+                <h3>Protección y Seguridad</h3>
                 <ul>
-                    <li><strong>Rage quit:</strong> Salir con tu parte si no estas de acuerdo</li>
-                    <li><strong>Veto de minoria:</strong> X% puede bloquear una decision</li>
-                    <li><strong>Quorum minimo:</strong> Decision solo valida con X% participacion</li>
-                    <li><strong>Supermayoria:</strong> Necesita 66% o 75% para pasar</li>
+                    <li><strong>Rage quit:</strong> Salir con tu parte si no estás de acuerdo</li>
+                    <li><strong>Veto de minoría:</strong> X% puede bloquear una decisión</li>
+                    <li><strong>Quorum mínimo:</strong> Decisión solo válida con X% participación</li>
+                    <li><strong>Supermayoría:</strong> Necesita 66% o 75% para pasar</li>
                 </ul>
 
                 <h2>Plantillas Listas</h2>
-                <p>No quieres elegir una por una? Protocol ofrece plantillas completas:</p>
+                <p>¿No quieres elegir una por una? Protocol ofrece plantillas completas:</p>
                 <ul>
-                    <li><strong>Minimo Legal:</strong> 1p1v, asamblea anual, consejo electo</li>
+                    <li><strong>Mínimo Legal:</strong> 1p1v, asamblea anual, consejo electo</li>
                     <li><strong>Democracia Directa:</strong> Todas las decisiones van a voto de todos</li>
-                    <li><strong>Delegativo:</strong> Delegacion liquida por temas</li>
-                    <li><strong>Sociocratico:</strong> Circulos + consentimiento</li>
-                    <li><strong>Experimental:</strong> Conviction voting + cuadratico</li>
+                    <li><strong>Delegativo:</strong> Delegación líquida por temas</li>
+                    <li><strong>Sociocrático:</strong> Círculos + consentimiento</li>
+                    <li><strong>Experimental:</strong> Conviction voting + cuadrático</li>
                 </ul>
             </div>
 
             <div data-lang="pt">
                 <span class="section-label">Mais Fundo</span>
-                <h1>Governanca em Detalhe</h1>
-                <p class="lead">As ferramentas de governanca disponiveis para cooperativas na rede.</p>
+                <h1>Governança em Detalhe</h1>
+                <p class="lead">As ferramentas de governança disponíveis para cooperativas na rede.</p>
 
                 <h2>Base Legal: 1 Pessoa 1 Voto</h2>
-                <p>Para ser uma cooperativa legal, o minimo e uma pessoa, um voto em decisoes fundamentais. Isso e inegociavel — e o que nos faz cooperativa.</p>
-                <p>Mas alem do minimo legal, tudo e experimental. Cada cooperativa pode adotar diferentes ferramentas do cardapio.</p>
+                <p>Para ser uma cooperativa legal, o mínimo é uma pessoa, um voto em decisões fundamentais. Isso é inegociável — é o que nos faz cooperativa.</p>
+                <p>Mas além do mínimo legal, tudo é experimental. Cada cooperativa pode adotar diferentes ferramentas do cardápio.</p>
 
-                <h2>O Cardapio de Ferramentas</h2>
-                <p>Protocol oferece um cardapio de ferramentas de governanca. Cada coop escolhe o que faz sentido para ela:</p>
+                <h2>O Cardápio de Ferramentas</h2>
+                <p>Protocol oferece um cardápio de ferramentas de governança. Cada coop escolhe o que faz sentido para ela:</p>
 
-                <h3>Votacao e Decisao</h3>
+                <h3>Votação e Decisão</h3>
                 <ul>
-                    <li><strong>Votacao quadratica:</strong> Expressar intensidade de preferencia</li>
+                    <li><strong>Votação quadrática:</strong> Expressar intensidade de preferência</li>
                     <li><strong>Conviction voting:</strong> Peso aumenta com tempo de compromisso</li>
-                    <li><strong>Consentimento (sociocracia):</strong> Passa se ninguem tem objecao fundamentada</li>
-                    <li><strong>Delegacao liquida:</strong> Delegar seu voto por tema para especialistas</li>
-                    <li><strong>Lazy consensus:</strong> Passa automaticamente se ninguem objeta em X dias</li>
+                    <li><strong>Consentimento (sociocracia):</strong> Passa se ninguém tem objeção fundamentada</li>
+                    <li><strong>Delegação líquida:</strong> Delegar seu voto por tema para especialistas</li>
+                    <li><strong>Lazy consensus:</strong> Passa automaticamente se ninguém objeta em X dias</li>
                 </ul>
 
-                <h3>Protecao e Seguranca</h3>
+                <h3>Proteção e Segurança</h3>
                 <ul>
                     <li><strong>Rage quit:</strong> Sair com sua parte se discordar</li>
-                    <li><strong>Veto de minoria:</strong> X% pode bloquear decisao</li>
-                    <li><strong>Quorum minimo:</strong> Decisao so vale com X% participacao</li>
+                    <li><strong>Veto de minoria:</strong> X% pode bloquear decisão</li>
+                    <li><strong>Quorum mínimo:</strong> Decisão só vale com X% participação</li>
                     <li><strong>Supermaioria:</strong> Precisa 66% ou 75% para passar</li>
                 </ul>
 
                 <h2>Templates Prontos</h2>
-                <p>Nao quer escolher um por um? Protocol oferece templates completos:</p>
+                <p>Não quer escolher um por um? Protocol oferece templates completos:</p>
                 <ul>
-                    <li><strong>Minimo Legal:</strong> 1p1v, assembleia anual, conselho eleito</li>
-                    <li><strong>Democracia Direta:</strong> Todas decisoes vao para votacao de todos</li>
-                    <li><strong>Delegativo:</strong> Delegacao liquida por temas</li>
-                    <li><strong>Sociocratico:</strong> Circulos + consentimento</li>
-                    <li><strong>Experimental:</strong> Conviction voting + quadratico</li>
+                    <li><strong>Mínimo Legal:</strong> 1p1v, assembleia anual, conselho eleito</li>
+                    <li><strong>Democracia Direta:</strong> Todas decisões vão para votação de todos</li>
+                    <li><strong>Delegativo:</strong> Delegação líquida por temas</li>
+                    <li><strong>Sociocrático:</strong> Círculos + consentimento</li>
+                    <li><strong>Experimental:</strong> Conviction voting + quadrático</li>
                 </ul>
             </div>
         </section>
@@ -1593,7 +1715,7 @@
             </div>
 
             <div data-lang="es">
-                <h1>Infraestructura Tecnica</h1>
+                <h1>Infraestructura Técnica</h1>
                 <p class="lead">Lo que Coop Protocol construye para alimentar la red.</p>
 
                 <h2>Las 6 Capas</h2>
@@ -1602,24 +1724,24 @@
                 <p>Billetera digital, token COOP, perfil universal, perfiles locales por coop, badges y credenciales.</p>
 
                 <h3>2. Capa de Cooperativas</h3>
-                <p>Registro de coops, cuotas tokenizadas (no transferibles), registro de miembros, gobernanza modular, tesoreria, plantillas legales.</p>
+                <p>Registro de coops, cuotas tokenizadas (no transferibles), registro de miembros, gobernanza modular, tesorería, plantillas legales.</p>
 
                 <h3>3. Capa de Red (DAO)</h3>
-                <p>Registro de la red, constitucion inmutable, senalizacion colectiva, feed de actividad, directorio.</p>
+                <p>Registro de la red, constitución inmutable, señalización colectiva, feed de actividad, directorio.</p>
 
-                <h3>4. Capa de Valor/Economia</h3>
-                <p>Pagos inter-coop, contribuciones voluntarias, distribucion, historial financiero.</p>
+                <h3>4. Capa de Valor/Economía</h3>
+                <p>Pagos inter-coop, contribuciones voluntarias, distribución, historial financiero.</p>
 
                 <h3>5. Capa de Conocimiento</h3>
-                <p>Documentacion, plantillas replicables, base de conocimiento, soporte.</p>
+                <p>Documentación, plantillas replicables, base de conocimiento, soporte.</p>
 
                 <h3>6. Infraestructura Base</h3>
-                <p>Blockchain (probablemente L2 para costos bajos), almacenamiento descentralizado, APIs abiertas, opcion auto-hospedada, opcion cloud.</p>
+                <p>Blockchain (probablemente L2 para costos bajos), almacenamiento descentralizado, APIs abiertas, opción auto-hospedada, opción cloud.</p>
             </div>
 
             <div data-lang="pt">
-                <h1>Infraestrutura Tecnica</h1>
-                <p class="lead">O que o Coop Protocol constroi para alimentar a rede.</p>
+                <h1>Infraestrutura Técnica</h1>
+                <p class="lead">O que o Coop Protocol constrói para alimentar a rede.</p>
 
                 <h2>As 6 Camadas</h2>
 
@@ -1627,19 +1749,19 @@
                 <p>Carteira digital, token COOP, perfil universal, perfis locais por coop, badges e credenciais.</p>
 
                 <h3>2. Camada de Cooperativas</h3>
-                <p>Registro de coops, quotas tokenizadas (nao-transferiveis), registro de membros, governanca modular, tesouraria, templates legais.</p>
+                <p>Registro de coops, quotas tokenizadas (não-transferíveis), registro de membros, governança modular, tesouraria, templates legais.</p>
 
                 <h3>3. Camada da Rede (DAO)</h3>
-                <p>Registro da rede, constituicao imutavel, sinalizacao coletiva, feed de atividade, diretorio.</p>
+                <p>Registro da rede, constituição imutável, sinalização coletiva, feed de atividade, diretório.</p>
 
                 <h3>4. Camada de Valor/Economia</h3>
-                <p>Pagamentos inter-coop, contribuicoes voluntarias, distribuicao, historico financeiro.</p>
+                <p>Pagamentos inter-coop, contribuições voluntárias, distribuição, histórico financeiro.</p>
 
                 <h3>5. Camada de Conhecimento</h3>
-                <p>Documentacao, templates replicaveis, base de conhecimento, suporte.</p>
+                <p>Documentação, templates replicáveis, base de conhecimento, suporte.</p>
 
                 <h3>6. Infraestrutura Base</h3>
-                <p>Blockchain (provavelmente L2 para custos baixos), storage descentralizado, APIs abertas, opcao self-hosted, opcao cloud.</p>
+                <p>Blockchain (provavelmente L2 para custos baixos), storage descentralizado, APIs abertas, opção self-hosted, opção cloud.</p>
             </div>
         </section>
 
@@ -1678,28 +1800,28 @@
 
             <div data-lang="es">
                 <h1>El Camino (Roadmap)</h1>
-                <p class="lead">Donde estamos y hacia donde vamos.</p>
+                <p class="lead">Dónde estamos y hacia dónde vamos.</p>
 
-                <h3>Fase 0: Fundacion (Actual)</h3>
+                <h3>Fase 0: Fundación (Actual)</h3>
                 <p>Definir base conceptual, principios, whitepaper, landing page.</p>
 
-                <h3>Fase 1: Formalizacion</h3>
+                <h3>Fase 1: Formalización</h3>
                 <p>Publicar whitepaper, constituir formalmente Coop Protocol, establecer estructura legal, equipo fundador.</p>
 
-                <h3>Fase 2: Infraestructura Minima</h3>
-                <p>Identidad digital, registro de miembros, cuotas tokenizadas, gobernanza basica, tesoreria.</p>
+                <h3>Fase 2: Infraestructura Mínima</h3>
+                <p>Identidad digital, registro de miembros, cuotas tokenizadas, gobernanza básica, tesorería.</p>
 
                 <h3>Fase 3: Primera Coop de Prueba</h3>
                 <p>Segunda cooperativa (probablemente Lab o Edu), primeras plantillas, flujo inter-coop, aprendizajes documentados.</p>
 
-                <h3>Fase 4: Expansion Controlada</h3>
-                <p>Coop Bank, mas cooperativas, cloud operacional, token COOP activo, primeras coops externas.</p>
+                <h3>Fase 4: Expansión Controlada</h3>
+                <p>Coop Bank, más cooperativas, cloud operacional, token COOP activo, primeras coops externas.</p>
 
                 <h3>Fase 5: Red Abierta</h3>
-                <p>Open source publico, documentacion completa, plantillas maduras, primeras franquicias, comunidad activa.</p>
+                <p>Open source público, documentación completa, plantillas maduras, primeras franquicias, comunidad activa.</p>
 
                 <h3>Fase 6: Madurez</h3>
-                <p>Gobernanza experimental en uso, multiples jurisdicciones, economia circular, Lab produciendo investigacion, modelo siendo replicado.</p>
+                <p>Gobernanza experimental en uso, múltiples jurisdicciones, economía circular, Lab produciendo investigación, modelo siendo replicado.</p>
 
                 <div class="callout">
                     <div class="callout-title">Nota</div>
@@ -1711,30 +1833,30 @@
                 <h1>O Caminho (Roadmap)</h1>
                 <p class="lead">Onde estamos e para onde vamos.</p>
 
-                <h3>Fase 0: Fundacao (Atual)</h3>
-                <p>Definir base conceitual, principios, whitepaper, landing page.</p>
+                <h3>Fase 0: Fundação (Atual)</h3>
+                <p>Definir base conceitual, princípios, whitepaper, landing page.</p>
 
-                <h3>Fase 1: Formalizacao</h3>
+                <h3>Fase 1: Formalização</h3>
                 <p>Publicar whitepaper, constituir formalmente Coop Protocol, estabelecer estrutura legal, time fundador.</p>
 
-                <h3>Fase 2: Infraestrutura Minima</h3>
-                <p>Identidade digital, registro de membros, quotas tokenizadas, governanca basica, tesouraria.</p>
+                <h3>Fase 2: Infraestrutura Mínima</h3>
+                <p>Identidade digital, registro de membros, quotas tokenizadas, governança básica, tesouraria.</p>
 
                 <h3>Fase 3: Primeira Coop Teste</h3>
                 <p>Segunda cooperativa (provavelmente Lab ou Edu), primeiros templates, fluxo inter-coop, aprendizados documentados.</p>
 
-                <h3>Fase 4: Expansao Controlada</h3>
+                <h3>Fase 4: Expansão Controlada</h3>
                 <p>Coop Bank, mais cooperativas, cloud operacional, token COOP ativo, primeiras coops externas.</p>
 
                 <h3>Fase 5: Rede Aberta</h3>
-                <p>Open source publico, documentacao completa, templates maduros, primeiras franquias, comunidade ativa.</p>
+                <p>Open source público, documentação completa, templates maduros, primeiras franquias, comunidade ativa.</p>
 
                 <h3>Fase 6: Maturidade</h3>
-                <p>Governanca experimental em uso, multiplas jurisdicoes, economia circular, Lab produzindo pesquisa, modelo sendo replicado.</p>
+                <p>Governança experimental em uso, múltiplas jurisdições, economia circular, Lab produzindo pesquisa, modelo sendo replicado.</p>
 
                 <div class="callout">
                     <div class="callout-title">Nota</div>
-                    <p>Este roadmap e direcional. Cada fase valida a anterior. Nao avancamos sem aprender.</p>
+                    <p>Este roadmap é direcional. Cada fase valida a anterior. Não avançamos sem aprender.</p>
                 </div>
             </div>
         </section>
@@ -1748,13 +1870,13 @@
                     <a href="https://wa.me/5551999894313?text=Hi%2C%20I%20want%20to%20learn%20more%20about%20THE%20COOP%20Revolution" class="btn primary">Schedule a Call on WhatsApp</a>
                 </div>
                 <div data-lang="es">
-                    <h2>Unete a THE COOP Revolution</h2>
-                    <p>Buscamos co-fundadores para liderar las primeras cooperativas. Miembros fundadores que quieran estar desde el dia uno. Socios estrategicos en legal, tech y finanzas. E inversores que creen en modelos cooperativos y descentralizados.</p>
+                    <h2>Únete a THE COOP Revolution</h2>
+                    <p>Buscamos co-fundadores para liderar las primeras cooperativas. Miembros fundadores que quieran estar desde el día uno. Socios estratégicos en legal, tech y finanzas. E inversores que creen en modelos cooperativos y descentralizados.</p>
                     <a href="https://wa.me/5551999894313?text=Hola%2C%20quiero%20saber%20mas%20sobre%20THE%20COOP%20Revolution" class="btn primary">Agendar Llamada por WhatsApp</a>
                 </div>
                 <div data-lang="pt">
-                    <h2>Junte-se a THE COOP Revolution</h2>
-                    <p>Buscamos co-founders para liderar as primeiras cooperativas. Membros fundadores que querem estar desde o dia um. Parceiros estrategicos em legal, tech e financas. E investidores que acreditam em modelos cooperativos e descentralizados.</p>
+                    <h2>Junte-se à THE COOP Revolution</h2>
+                    <p>Buscamos co-founders para liderar as primeiras cooperativas. Membros fundadores que querem estar desde o dia um. Parceiros estratégicos em legal, tech e finanças. E investidores que acreditam em modelos cooperativos e descentralizados.</p>
                     <a href="https://wa.me/5551999894313?text=Oi%2C%20quero%20saber%20mais%20sobre%20THE%20COOP%20Revolution" class="btn primary">Agendar Conversa no WhatsApp</a>
                 </div>
             </div>
